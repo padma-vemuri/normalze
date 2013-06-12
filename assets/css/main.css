@@ -1,0 +1,91 @@
+        <style type="text/css">
+            table
+            {
+                font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+         
+            }
+
+            th.curvedEdges{
+                font-size: 10px;
+            }
+            table.standard
+            {
+                width:100%;
+                padding:25px;
+                align:left;
+                vertical-align:top;
+                border-spacing: 0px;
+
+            }
+
+            
+            td.standard
+            {
+                padding:5px;
+                align:left;
+                vertical-align:top;
+                border-spacing: 0px;
+                word-break:break-all; 
+            }
+
+
+            tr.hover:hover{
+                background-color:rgba(173,216,230,0.5);
+                
+                color:black;
+                border-spacing: 0px;
+                transition:1200ms;
+                cursor: pointer;
+                border-radius: 2px;
+
+            }
+
+            table.curvedEdges { border-spacing: 0px; border:3px solid RoyalBlue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
+            table.curvedEdges td, table.curvedEdges th { padding-bottom: 1px; border-bottom:1px dotted;border-bottom-color:rgba(0,0,0,0.2); padding:5px;border-spacing: 0px; }
+            td
+            {
+                vertical-align:center;
+            }
+            .inputtext { width: 900px; height: 20px;
+                         float:left;
+            }
+            input.rounded {
+                border: 1px solid #ccc;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                -moz-box-shadow: 2px 2px 3px #666;
+                -webkit-box-shadow: 2px 2px 3px #666;
+                box-shadow: 2px 2px 3px #666;
+                font-size: 20px;
+                padding: 4px 7px;
+                outline: 0;
+                -webkit-appearance: none;
+            }
+            input.time
+            {
+                width:200px;
+                height:20px;
+                float:left;
+            }
+            input.rounded:focus {
+                border-color: #339933;
+            }
+body
+{
+background-color:whitesmoke;
+background-repeat:no-repeat;
+}          
+
+footer 
+{
+
+    color: #444;
+    background: #777777;
+    border-top: 7px solid #000;
+    clear: both;
+    padding: 15px;
+    margin-top: 30px;
+
+}
+        </style>
