@@ -41,7 +41,7 @@
             }
 
             table.curvedEdges { border-spacing: 0px; border:3px solid RoyalBlue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
-            table.curvedEdges td, table.curvedEdges th { padding-bottom: 1px; border-bottom:1px dotted;border-bottom-color:rgba(0,0,0,0.2); padding:5px;border-spacing: 0px; }
+            table.curvedEdges td, table.curvedEdges th { padding-bottom: 1px;border-right:1px dotted;border-right-color:rgba(0,0,0,0.2);  border-bottom:1px dotted;border-bottom-color:rgba(0,0,0,0.2); padding:5px;border-spacing: 0px; }
             td
             {
                 vertical-align:center;
@@ -73,7 +73,7 @@
             }
 body
 {
-background-color:whitesmoke;
+background-color:white;
 background-repeat:no-repeat;
 }          
 

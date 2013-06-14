@@ -5,7 +5,7 @@ error_reporting(0);
   <tr style="background-color:lightblue;white-space:nowrap;text-align:left;">
     
     <th>Issue Reported Date</th>
-    <th>Case Number</th>
+    <th>Issue Number</th>
     <th>Application</th>    
     <th>Priority</th>  
     <th>DB/FE</th>
@@ -16,7 +16,7 @@ error_reporting(0);
     <th>Release Related</th>
     <th>Recommendations</th>
     <th>Summary</th>
-    <th>Case PBI</th>    
+    <th>Case/PBI</th>    
       
   </tr>
 
@@ -38,7 +38,7 @@ foreach($query as $row){
     echo "<td  >". $row->IssueReportedDate ."</td>";
  	//echo "<td>". $row->CaseNo ."</td>";  
 
- 	echo  "<td  >"."<a href='' style=\"color:blue;\" onclick =\"javascript: window.open('view/".$incnumber."', 'window_name', 'width = 1080, height = 250');\">Audit</a>".anchor('home/create/'.$incnumber, $row->CaseNo,array('id'=>'edit'))."</td>"; 
+ 	echo  "<td  >"."<a href='' style=\"color:blue;\" onclick =\"javascript: window.open('view/".$incnumber."', 'window_name', 'width = 250, height = 250,scrollbars=yes');\">Audit</a>".anchor('home/create/'.$incnumber, $row->CaseNo,array('id'=>'edit'))."</td>"; 
   echo "<td >". $row->Application ."</td>";
  	echo "<td >". $row->Priority ."</td>";
  	echo "<td   style='text-align:center;'>". $row->DBFE ."</td>";

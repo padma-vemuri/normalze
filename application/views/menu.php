@@ -1,7 +1,7 @@
 <div id ="welcome">
 	<?php
 		if(isset($this->session->userdata['username'])){
-			echo "Welcome,".$this->session->userdata['username']."!";
+			echo "Logged in as ".$this->session->userdata['username']."";
 		}
      ?>
 </div>
@@ -19,7 +19,7 @@
 					
 		<a class="menu" href="/<?php echo "test/normalize/index.php/home/update"?>">
 			<div> <img src="<?php echo base_url();?>/assets/images/create.png" /></div>
-			<div><pre>Cases  </pre></a> </div>
+			<div><pre>Issues  </pre></a> </div>
 	</div>
 	<div class ="menuicon" style="display: inline-block;">
 		

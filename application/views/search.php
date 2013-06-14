@@ -7,7 +7,7 @@ $formHTML = array(
 echo form_open('home/search',$formHTML);
 
 $list = array(
-		 'CASE_NO'  => 'Case Number',
+		 'CASE_NO'  => 'Issue Number',
 		 'ISSUE_REPORTED_DATE' =>'Reported Date',
 		 'APPLICATION' =>'Application',
 		 'PRIORITY' =>'Priority',
@@ -23,7 +23,7 @@ $list = array(
 $inputUsername = array(
 				'name' =>'search',
 				'class'   =>'search',
-				'placeholder'=>'Type here',
+				'placeholder'=>'Search here..',
 				'maxlength' => '1300',
 				'size' => '20',
 				'height' => '30px'

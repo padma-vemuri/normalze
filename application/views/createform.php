@@ -5,20 +5,21 @@
 	 	if($populate){
 
 	 		foreach ($populate as $row) {
-	 		$repdate = $row->ISSUE_REPORTED_DATE;
-	 		$case_no = $row->CASE_NO;
-	 		$project = $row->PROJECT;
-	 		$gbp = $row->GBP;
-	 		$application = $row->APPLICATION;
-	 		$priority = $row->PRIORITY;
-	 		$dbfe = $row->DB_FE;
-	 		$db = $row->DB;
-	 		$suppdb = $row->SUPPORTED_DB;
-	 		$curanal = $row->ANALYST;
-	 		$status = $row->STATUS;
-	 		$relrelated = $row->RELEASE_RELATED;
-	 		$summary = $row->SUMMARY;
-	 		$recommendations = $row->RECOMMENDATIONS;
+	 			$id      = $row->ID;
+		 		$repdate = $row->ISSUE_REPORTED_DATE;
+		 		$case_no = $row->CASE_NO;
+		 		$project = $row->PROJECT;
+		 		$gbp = $row->GBP;
+		 		$application = $row->APPLICATION;
+		 		$priority = $row->PRIORITY;
+		 		$dbfe = $row->DB_FE;
+		 		$db = $row->DB;
+		 		$suppdb = $row->SUPPORTED_DB;
+		 		$curanal = $row->ANALYST;
+		 		$status = $row->STATUS;
+		 		$relrelated = $row->RELEASE_RELATED;
+		 		$summary = $row->SUMMARY;
+		 		$recommendations = $row->RECOMMENDATIONS;
 
 	 		}
 	 		
@@ -105,13 +106,13 @@
 						'size' =>	21,
 						'value'=> $db
 						);
-
-        
+		
 		echo form_open('home/addform',$formHTML);
 
 		echo $this->session->userdata['error'];
         $this->session->unset_userdata('error');
-
+        echo form_hidden('caseid',$id);
+		
 		if($populate){
 			echo form_label('Reported Date','reporteddate');
 			echo form_input($reporteddate1);
@@ -125,7 +126,7 @@
 
 		
 	
-		echo form_label('Case Number','casenumber');
+		echo form_label('Issue Number','casenumber');
 		echo form_input($casenumber);
 		echo "<br/><br/>";
 
@@ -150,12 +151,12 @@
 
 		if($populate){
 			if($dbfe == 'DB')
-				echo form_label('DB/FE','dbfe').form_radio('dbfe','DB','checked = "TRUE"')." Database ".form_radio('dbfe','FE')." FrontEnd";
+				echo form_label('DB/FE','dbfe').form_radio('dbfe','DB','checked = "TRUE"')." Database ".form_radio('dbfe','FE')." Front End";
 			elseif($dbfe == 'FE')
-				echo form_label('DB/FE','dbfe').form_radio('dbfe','DB')." Database ".form_radio('dbfe','FE','checked ="TRUE"')." FrontEnd";
+				echo form_label('DB/FE','dbfe').form_radio('dbfe','DB')." Database ".form_radio('dbfe','FE','checked ="TRUE"')." Front End";
 		}
 		else 
-			echo form_label('DB/FE','dbfe').form_radio('dbfe','DB')." Database ".form_radio('dbfe','FE')." FrontEnd";
+			echo form_label('DB/FE','dbfe').form_radio('dbfe','DB')." Database ".form_radio('dbfe','FE')." Front End";
 
 
 
@@ -192,37 +193,37 @@
 				case 'Open':
 					echo form_label('Status','status')."".form_radio('status','Open','checked ="TRUE"')." Open ".form_radio('status','Closed')." Closed ".
 						form_radio('status','WIP')." WIP ".form_radio('status','Resolved')." Resolved ".
-						form_radio('status','Recommendation Provided')." Recommendation Provided ".
+						form_radio('status','Recommendations Provided')." Recommendations Provided ".
 						form_radio('status','Waiting For Information')." Waiting For Information ";			
 					break;
 				case 'Closed':
 					echo form_label('Status','status')."".form_radio('status','Open')." Open ".form_radio('status','Closed','checked ="TRUE"')." Closed ".
 						form_radio('status','WIP')." WIP ".form_radio('status','Resolved')." Resolved ".
-						form_radio('status','Recommendation Provided')." Recommendation Provided ".
+						form_radio('status','Recommendations Provided')." Recommendations Provided ".
 						form_radio('status','Waiting For Information')." Waiting For Information ";
 					break;
 				case  'WIP':
 					echo form_label('Status','status')."".form_radio('status','Open')." Open ".form_radio('status','Closed')." Closed ".
 						form_radio('status','WIP','checked ="TRUE"')." WIP ".form_radio('status','Resolved')." Resolved ".
-						form_radio('status','Recommendation Provided')." Recommendation Provided ".
+						form_radio('status','Recommendations Provided')." Recommendations Provided ".
 						form_radio('status','Waiting For Information')." Waiting For Information ";
 					break;
 				case 'Resolved':
 					echo form_label('Status','status')."".form_radio('status','Open')." Open ".form_radio('status','Closed')." Closed ".
 						form_radio('status','WIP')." WIP ".form_radio('status','Resolved','checked ="TRUE"')." Resolved ".
-						form_radio('status','Recommendation Provided')." Recommendation Provided ".
+						form_radio('status','Recommendations Provided')." Recommendations Provided ".
 						form_radio('status','Waiting For Information')." Waiting For Information ";
 					break;
-				case 'Recommendation Provided':
+				case 'Recommendations Provided':
 					echo form_label('Status','status')."".form_radio('status','Open')." Open ".form_radio('status','Closed')." Closed ".
 						form_radio('status','WIP')." WIP ".form_radio('status','Resolved')." Resolved ".
-						form_radio('status','Recommendation Provided','checked ="TRUE"')." Recommendation Provided ".
+						form_radio('status','Recommendations Provided','checked ="TRUE"')." Recommendations Provided ".
 						form_radio('status','Waiting For Information')." Waiting For Information ";
 					break;
 				case 'Waiting For Information':
 					echo form_label('Status','status')."".form_radio('status','Open')." Open ".form_radio('status','Closed')." Closed ".
 						form_radio('status','WIP')." WIP ".form_radio('status','Resolved')." Resolved ".
-						form_radio('status','Recommendation Provided')." Recommendation Provided ".
+						form_radio('status','Recommendations Provided')." Recommendations Provided ".
 						form_radio('status','Waiting For Information','checked ="TRUE"')." Waiting For Information ";
 					break;
 				default:
@@ -234,7 +235,7 @@
 		else
 			echo form_label('Status','status')."".form_radio('status','Open')." Open ".form_radio('status','Closed')." Closed ".
 						form_radio('status','WIP')." WIP ".form_radio('status','Resolved')." Resolved ".
-						form_radio('status','Recommendation Provided')." Recommendation Provided ".
+						form_radio('status','Recommendations Provided')." Recommendations Provided ".
 						form_radio('status','Waiting For Information')." Waiting For Information ";
 		
 		echo "<br/><br/>";
@@ -251,7 +252,7 @@
 			echo form_label('Release Related','relrelated').form_radio('relrelated','Y')." Yes ".form_radio('relrelated','N')." No ".form_radio('relrelated','N/A')." N/A ";
 		echo "<br/>";
 		
-		echo "<p style=\"color:darkred; position:absolute; left:140px;\">Summary: Briefly state problem in your own words. Do not copy paste from &shy;<br/> 
+		echo "<p style=\"color:darkred; position:absolute; line-height: 1em; left:140px;\">Summary: Briefly state problem in your own words. Do not copy paste from &shy;<br/> 
 				INC/PBI. Also please update the summary to the current status. &shy;<br/> 
 				Please hit enter when you approach end of **every** line in the box.</p><br/><br/><br/><br/><br/>";
 
