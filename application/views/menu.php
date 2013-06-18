@@ -1,7 +1,7 @@
 <div id ="welcome">
 	<?php
 		if(isset($this->session->userdata['username'])){
-			echo "Logged in as ".$this->session->userdata['username']."";
+			echo "<img src=\"/test/normalize/assets/images/user.png\"/>".$this->session->userdata['username']."";
 		}
      ?>
 </div>
@@ -24,7 +24,7 @@
 	<div class ="menuicon" style="display: inline-block;">
 		
 		<a class="menu"href="/<?php echo "test/normalize/index.php/home/statusreports"?>">
-			<div> <img src="<?php echo base_url();?>/assets/images/repot.png" /></div>
+			<div align ="center"> <img src="<?php echo base_url();?>/assets/images/repot.png" /></div>
 			<div>  <pre>Status Report </pre> </a> </div>
 	</div>
 	

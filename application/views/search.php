@@ -10,7 +10,6 @@ $list = array(
 		 'CASE_NO'  => 'Issue Number',
 		 'ISSUE_REPORTED_DATE' =>'Reported Date',
 		 'APPLICATION' =>'Application',
-		 'PRIORITY' =>'Priority',
 		 'DB_FE' =>	'DB/FE',
 		 'DB'	=>'Database',
 		 'SUPPORTED_DB' =>'Supported DB',

@@ -207,7 +207,7 @@ class User_model extends CI_Model{
 	function closed(){
 		$query =$this->db->query("SELECT 
 								'<div align=\"left\" style=\"width:90px\">'||ISSUE_REPORTED_DATE||'</div>'  as \" Issue Reported Date\",
-								'<div style=\"width:130px\">'||CASE_NO||'</div>'  as \"Issue Number\",
+								'<div style=\"width:129px\">'||CASE_NO||'</div>'  as \"Issue Number\",
 								'<div align=\"left\" style=\"width:100px;\">'||GBP||'</div>' as \"GBP\",
 								'<div align=\"left\"style=\"width:200px; white-space:pre-wrap;\">'||APPLICATION||'</div>' as \"Application\",
 								'<div style=\"width:160px\"white-space:pre;>'||priority||'</div>'  as \"Priority\",
@@ -319,37 +319,57 @@ class User_model extends CI_Model{
 	}
 	
 	function add(){
-
-		$s = $this->input->post('reporteddate');
-		$date1 = strtotime($s);
-		$old = $this->input->post('reporteddate1');
-		$date1old = strtotime($old);
-		$date1 = date('d-M-y',$date1);
 		$no_spaces_case_num = preg_replace('/\ |\ /','',$this->input->post('casenumber'));
-		$addform  = $this->db->query("call gdcp.perf_norm_pkg.ins_upd_report('".$this->input->post('caseid')."',
-                                '".$date1."',
-                                '".$no_spaces_case_num."',
-                                '".$this->input->post('gbplist')."',
-                                '".$this->input->post('prolist')."',
-                               	'".$this->input->post('application')."',
-								'".$this->input->post('priority')."',
-								'".$this->input->post('dbfe')."',
-								'".$this->input->post('db')."',
-                                '".$this->input->post('supdb')."',
-								'".$this->input->post('anallist')."',
-								'".$this->input->post('status')."',
-								'".$this->input->post('relrelated')."',
-								'".$this->input->post('recommendations')."',
-								'".$this->input->post('summary')."',
-								'',
-                                '',
-                                '".$this->session->userdata['username']."',
-                                '".$this->session->userdata['username']."'
-                                )");
-		if($addform)
-			return true;
-		else 
-			return false;
+		if($this->input->post('submit')){
+
+			$s = $this->input->post('reporteddate');
+			$date1 = strtotime($s);
+			$old = $this->input->post('reporteddate1');
+			$date1old = strtotime($old);
+			$date1 = date('d-M-y',$date1);
+			
+
+			$addform  = $this->db->query("call gdcp.perf_norm_pkg.ins_upd_report('".$this->input->post('caseid')."',
+	                                '".$date1."',
+	                                '".$no_spaces_case_num."',
+	                                '".$this->input->post('gbplist')."',
+	                                '".$this->input->post('prolist')."',
+	                               	'".$this->input->post('application')."',
+									'".$this->input->post('priority')."',
+									'".$this->input->post('dbfe')."',
+									'".$this->input->post('db')."',
+	                                '".$this->input->post('supdb')."',
+									'".$this->input->post('anallist')."',
+									'".$this->input->post('status')."',
+									'".$this->input->post('relrelated')."',
+									'".$this->input->post('recommendations')."',
+									'".$this->input->post('summary')."',
+									'',
+	                                '',
+	                                '".$this->session->userdata['username']."',
+	                                '".$this->session->userdata['username']."'
+	                                )");
+			if($addform){
+				$message = 'Case/Issue has been Created/Updated.';
+				return $message;
+			}
+			else 
+				return false;
+		}
+		elseif($this->input->post('delete')){
+			$query = $this->db->query("delete from gdcp.release_status_report where case_no like '".$no_spaces_case_num."'");
+			if($query)
+				$query = $this->db->query("delete from gdcp.release_status_report_rev where case_no like '".$no_spaces_case_num."'");
+			if($query){
+				$message = "Case/Issue has been Deleted.";
+				return $message; 
+			}
+			else{
+				$message = "Issue/Case was not Deleted. Please try Again.";
+				return $message;
+			}
+		}
+
 	    
 
 	}

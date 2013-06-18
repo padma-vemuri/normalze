@@ -6,11 +6,8 @@
 		<!----  JS/ CSS all scripts go here.. -->		
 		<link rel="stylesheet" href="<?php echo base_url();?>/assets/css/style.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>/assets/css/main.css">
-		<link rel="stylesheet" href="<?php base_url();?>/assets/font/stylesheet.css"> <!-- link to style sheet -->
+		<link rel="stylesheet" href="<?php echo base_url();?>/assets/font/stylesheet.css" type="text/css" charset="utf-8"> <!-- link to style sheet -->
 		<script src='<?php echo base_url();?>/assets/js/script.js'></script>  <!-- link to JS functions -->
-		<!--[if lt IE 8]
-			<script src="localhost/normalize/assets/html5shiv/src/html5shiv.js"></script>
-		<![endif]-->
 		<!--  link to font style sheets -->
 
 	</head>

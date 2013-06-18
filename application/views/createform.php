@@ -28,6 +28,7 @@
 
 		$formHTML = array(
 					'id' => 'createform',
+					'name'=> 'createform'
 					//'action' => 'login/validate'
 					); 
 		
@@ -82,7 +83,15 @@
 		$inputSubmit = array(
 						'type' =>'submit',
 						'value' =>'Submit',
-						'id'	=>'button');
+						'id'	=>'button',
+						'name' =>'submit',
+						'onclick'=>'return confirm(\'Please Confirm !\');');
+		$inputDelete= array(
+						'type' =>'submit',
+						'value' =>'Delete',
+						'id'	=>'button',
+						'name' =>'delete',
+						'onclick'=>'return confirm(\'Do really want to delete this Issue/Case ? \');');
 
 		$casenumber = array(
 						'name' => 	'casenumber',
@@ -113,7 +122,8 @@
         $this->session->unset_userdata('error');
         echo form_hidden('caseid',$id);
 		
-		if($populate){
+		if($populate){	
+			echo form_submit($inputDelete);
 			echo form_label('Reported Date','reporteddate');
 			echo form_input($reporteddate1);
 			echo "<br/><br/>";
@@ -252,7 +262,7 @@
 			echo form_label('Release Related','relrelated').form_radio('relrelated','Y')." Yes ".form_radio('relrelated','N')." No ".form_radio('relrelated','N/A')." N/A ";
 		echo "<br/>";
 		
-		echo "<p style=\"color:darkred; position:absolute; line-height: 1em; left:140px;\">Summary: Briefly state problem in your own words. Do not copy paste from &shy;<br/> 
+		echo "<p style=\"color:darkred; position:absolute; line-height: 1.2em; left:140px;\">Summary: Briefly state problem in your own words. Do not copy paste from &shy;<br/> 
 				INC/PBI. Also please update the summary to the current status. &shy;<br/> 
 				Please hit enter when you approach end of **every** line in the box.</p><br/><br/><br/><br/><br/>";
 
@@ -264,13 +274,22 @@
 		echo form_textarea($recommendations);
 
 		echo "<br/>";
-
+		
+		
 		echo form_submit($inputSubmit);
+		//echo form_submit($inputCancel);
+		
+		echo"<input type='button' id=\"button\" name ='cancel' value=\"Cancel\" 
+				onclick=\" var result = confirm('Do really want to Cancel ?'); 
+					if(result == true)
+						javascript:location.href = '/test/normalize/index.php/home/update';
+					else
+						 return false;;\" />";
+		echo form_close();
+		
+
 
 		
-		echo"<input type='button' id=\"button\" value=\"Cancel\" onClick=\"javascript:location.href = '/test/normalize/index.php/home/update';\" />";
-
-		echo form_close();
 
 ?>
 </div> 

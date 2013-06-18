@@ -32,9 +32,9 @@
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
-              );
+               );
 			$tmp2 = array (
-                    'table_open'          => '<div id="open24"><table  class="curvedEdges" style = "z-index:2; position:relative; top:100px;">',
+                    'table_open'          => '<div id="open24"><table  class="curvedEdges" style = "z-index:2; position:relative; top:10px;">',
 
                     'heading_row_start'   => '<tr>',
                     'heading_row_end'     => '</tr>',
@@ -52,8 +52,7 @@
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
-              );
-
+               );
 			$tmp3 = array (
                     'table_open'          => '<div id="cases24"><table  class="curvedEdges" style = "z-index:3; position:relative;left:100px; width:auto;">',
 
@@ -73,8 +72,7 @@
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
-              );
-
+               );
                echo "<div style=\"width:45%;\" id  =\"casesummarytitle\">";
 			$this->table->set_template($tmpl);
                $this->table->set_empty("0");
@@ -84,9 +82,6 @@
                else
                     echo "NO Projects";
                echo "</div>";
-			
-               
-               
 			$query = $this->user_model->open24();
                
                if($query->num_rows() > 0){
@@ -101,7 +96,7 @@
                     //$this->table->set_template($tmp2);
                     //$this->table->set_caption('Cases open in the last 24 hours');
                     //echo $this->table->generate($query); 
-                    echo "<h2 class=\"tableheading\"> No Issues were open in the last 24 hours</h2>";
+                    echo "<h2 class=\"tableinside\"> No Issues were open in the last 24 hours</h2>";
                }
                echo "</div>";
 
@@ -115,40 +110,30 @@
                }
                else{
                     echo "<div style=\"width:300px;\" id  =\"cases24titleE\">";
-                    echo "<h2 class=\"tableheading\"> No Issues were worked on in the last 24 hours</h2>";
+                    echo "<h2 class=\"tableinside\"> No Issues were worked on in the last 24 hours</h2>";
                }
 
                //echo $this->table->generate($query);
                echo "</div>";
-               
-
-
-
-
-				# code..
-
-			//$this->load->view('main',$data);	
-				//$this->load->view('main',$query);
-			
 		}
           function update(){
+               error_reporting(0);
                if(!isset($this->session->userdata['username']))
                     redirect('login');
                $this->load->view('header');
                $this->load->view('menu');
                $this->load->view('search');
                $this->load->view('createa');
-              
+               echo $this->session->userdata('sucesslog');
+               echo $this->session->userdata('errorlog');
+               $this->session->unset_userdata('sucesslog');
+               $this->session->unset_userdata('errorlog');
                $this->load->model('user_model');
                $data['query'] = $this->user_model->update();
                $this->load->library('table');
                $this->load->view('update',$data);
-
-             
           }
-
-
-		function create($id = ''){
+          function create($id = ''){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
 
@@ -214,9 +199,7 @@
                     $this->load->view('createform',$data);
 
                }
-			
 		}
-
 		function statusreports(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
@@ -248,34 +231,26 @@
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
-              );
-               $this->table->set_caption('<h2 class="tableheading">Issues Reported by GBP/Application Support Team</h2>');
+                );
+               $this->table->set_caption('<h2 class="tableheading">Issues Reported by GBP/Application Support Team</h2><p>'.$query->num_rows().' Records');
 			$this->table->set_template($tmpl);
 			$statusreport = $this->table->generate($query);
 			echo $statusreport;
-               echo $query->num_rows().' Records';
 
                $query = $this->user_model->perfapp();
 
                $this->load->library('table');
               
-               $this->table->set_caption('<br/><br/><h2 class="tableheading">Issues Reported by Application and Performance Support team (Extended Version)</h2>');
+               $this->table->set_caption('<br/><br/><h2 class="tableheading">Issues Reported by Application and Performance Support team (Extended Version)</h2><p>'.$query->num_rows().' Records');
                $this->table->set_template($tmpl);
                $perfapp = $this->table->generate($query);
                echo $perfapp;
-               echo $query->num_rows().' Records';
-
-
-			
 			$query = $this->user_model->closed();
 			
-               $this->table->set_caption('<br/><br/><h2 class="tableheading">Closed Issues</h2>');
+               $this->table->set_caption('<br/><br/><h2 class="tableheading">Closed Issues</h2><p>'.$query->num_rows().' Records');
 			$this->table->set_template($tmpl);
 			$closed = $this->table->generate($query);
-			
 			echo $closed;
-               echo $query->num_rows().' Records';
-
 			echo "<br/>";
 		}
 		function releaseprojects(){
@@ -303,14 +278,12 @@
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
-              );
+               );
                $this->table->set_caption('<h2 class="tableheading">Release Projects</h2>');
 			$this->table->set_template($tmpl);
 			echo $this->table->generate($query);
-               echo $query->num_rows();
-			
+               echo $query->num_rows();	
 		}
-
           function addform(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
@@ -321,22 +294,22 @@
                
                $this->load->model('user_model');
                $add = $this->user_model->add();
-               if($add)
+               if($add){
+                     $this->session->set_userdata('sucesslog','<p class="sucesslog">'.$add.'</p>');
+                     redirect('home/update');
+                }
+               else{
+                    $this->session->set_userdata('errorlog','<p class="errorlog">There was an ERROR. Try again.</p>');
                     redirect('home/update');
-               else
-                    redirect('home/update');
+               }
           }
-
 		function charts(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
 			$this->load->view('header');
 			$this->load->view('menu');
-			$this->load->view('charts');
-			
+			$this->load->view('charts');	
 		}
-
-
 		function email(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
@@ -364,28 +337,18 @@
 
                               'table_close'         => '</table></div>'
                          );
-              
-
-
-               
-               
                $query = $this->user_model->perfapp();
                $this->table->set_template($tmp2);
                $perfapp = $this->table->generate($query);
                $countperf =  $query->num_rows();
-
-              
                $query = $this->user_model->estatusreportinc();
                $this->table->set_template($tmp2);
                $estatusreportinc = $this->table->generate($query);
                $countinc=  $query->num_rows();
-
-
                $query = $this->user_model->estatusreportpbi();
                $this->table->set_template($tmp2);
                $estatusreportpbi = $this->table->generate($query);
                $countpbi =  $query->num_rows();
-
                $query = $this->user_model->closed1();
                $countclosed = $query->num_rows();
                $query = $query->result();
@@ -420,23 +383,11 @@
                                           <td style=\"border:1px solid;\">".  $row->Recommendations."</td>
                                           <td style=\"border:1px solid;\">".$row->Summary."</td>
                                           <td style='border:1px solid;text-align:center;'>". $row->CasePBI ."</td>
-                                        </tr>
-                                   ";   
-                         
+                                        </tr>";                            
                }
                $closed .="</table>";
-
-               //$this->table->set_template($tmp4);
-               //$closed = $this->table->generate($query);
-               
-
-
-              // $countclosed =  $query->num_rows();
-               
-
                $username = $this->session->userdata('username');
 			$this->load->library('email');
-			//$this->email->initialize($config);
 			$this->email->set_newline("\r\n");
 			$this->email->from($username.'@cisco.com', '');
 			$this->email->to($username.'@cisco.com', ''); 
@@ -462,14 +413,12 @@
 
 
 			if ($this->email->send()){
-                    $this->session->set_userdata('sucesslog','<p class="sucesslog">Your Email has been sent !</p>');
+                    $this->session->set_userdata('sucesslog','<p class="sucesslog">Your Email has been sent!</p>');
 				redirect('home/statusreports');
                }
 			else
 				echo $this->email->print_debugger();
-
-		}
-
+          }
           function search(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
@@ -510,19 +459,17 @@
                     echo "<div id =\"error\"><p id =\"error\"> No records are found. Please Search Again </p>"; 
                     echo"<input type='button' id=\"button\" value=\"Back\" onClick=\"javascript:location.href = 'update';\" /></div>"; 
 
-               }
-                    
-
+               }              
           }
-
           function logout(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
-               $this->session->unset_userdata('username');
-               $this->session->sess_destroy();
-               redirect('login','refresh');
+               else{
+                    $this->session->unset_userdata('username');
+                    $this->session->sess_destroy();
+                    redirect('login','refresh');
+               }
           }
-
           function view($id = ''){
                error_reporting(0);
                if(!isset($this->session->userdata['username']))
@@ -559,6 +506,8 @@
                elseif(!$query) 
                     echo "<p>No changes were made. </p>";
           }
+
+
 	}
 ?>
 

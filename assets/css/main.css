@@ -1,7 +1,7 @@
         <style type="text/css">
             table
             {
-                font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+                font-family:"Calibri", Arial, Helvetica, sans-serif;
          
             }
 
@@ -34,8 +34,8 @@
                 
                 color:black;
                 border-spacing: 0px;
-                transition:1200ms;
-                cursor: pointer;
+                transition:600ms;
+                cursor: text;
                 border-radius: 2px;
 
             }
