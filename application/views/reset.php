@@ -11,12 +11,16 @@
 		if(isset($this->session->userdata['error']))
                     echo $this->session->userdata['error'];
 		echo form_open('login/setpassword',$formHTML);
-		echo "<h2> Set your New Password</h2>";
-		echo "<br/>";
 
+		echo "<h1 id=\"reset\"> Set your New Password</h1>";
+		echo "<br/>";
+		$att = array(
+					'class' => 'signin');
+		
 		$Newpassword = array(
 						'name' =>'password',
 						'id'   =>'password',
+					
 						'placeholder'=>'New Password',
 						'maxlength' => '18',
 						'size' => '24'
@@ -31,11 +35,11 @@
 			);
 
 
-		echo form_label('NewPassword','Newpassword');
-
-		echo form_password($Newpassword); 
+		echo form_label('New Password','Newpassword',$att);
+ 
+		echo form_password($Newpassword); echo "<div class=\"subscript\">*Password should be atleast 8 characters.</div>";
 		echo "<br/><br/>";
-		echo form_label('Confirm','Confirmpassword');
+		echo form_label('Confirm','Confirmpassword',$att);
 		echo form_password($Conpassword);
 		$inputSubmit = array(
 						'type' =>'submit',
@@ -43,9 +47,9 @@
 						'id'	=>'button');
 
 	
-		echo "<br/><br/>";
+		echo "<br/>";
 		echo form_submit($inputSubmit);
-	
+		echo "<h1 class= 'logo' style='position:absolute;right:10px; bottom:-20px;'><img src=\"/test/normalize/assets/images/ciscologo.jpg\"/> </h1>";
 		echo form_close();
 	?>
 

@@ -7,40 +7,52 @@
 </div>
 
 <div name ="menu" id ="menu">
-	<div class ="menuicon" style="display: inline-block;">
-		
-		<a class="menu" href="/<?php echo "test/normalize/index.php/home"?>">
-			<div> <img src="<?php echo base_url();?>/assets/images/home.png" /></div>
-			<div><pre>Home   </pre></a> </div>
-	</div>
-
-	<div class ="menuicon" style="display: inline-block;">
-
-					
-		<a class="menu" href="/<?php echo "test/normalize/index.php/home/update"?>">
-			<div> <img src="<?php echo base_url();?>/assets/images/create.png" /></div>
-			<div><pre>Issues  </pre></a> </div>
-	</div>
-	<div class ="menuicon" style="display: inline-block;">
-		
-		<a class="menu"href="/<?php echo "test/normalize/index.php/home/statusreports"?>">
-			<div align ="center"> <img src="<?php echo base_url();?>/assets/images/repot.png" /></div>
-			<div>  <pre>Status Report </pre> </a> </div>
-	</div>
 	
-	<div class ="menuicon" style="display: inline-block;">
-		
-		<a class="menu"href="/<?php echo "test/normalize/index.php/home/releaseprojects"?>">
-			<div> <img src="<?php echo base_url();?>/assets/images/list.png" /></div>
-			<div><pre>Projects  </pre> </a> </div>
-	</div>
-	<div class ="menuicon" style="display: inline-block;">
-		
-		<a class="menu" href="/<?php echo "test/normalize/index.php/home/charts"?>">
-			<div> <img src="<?php echo base_url();?>/assets/images/charts.png" /></div>
-			<div><pre>Charts  </pre></a> </div>
-	</div>
-							
+
+	
+		<?php $obj = new CurrentPage();
+			  $current = $obj->curPageURL();
+			  if($current == 'http://localhost/test/normalize/index.php/home') {?>
+				<ul class ="menuicon" style="display: inline-block;background-color:rgba(65,105,225,0.3); border-radius:3px;">
+					<a class="menu" href="/<?php echo "test/normalize/index.php/home"?>">
+						<li> <img src="<?php echo base_url();?>/assets/images/home.png" /></li>
+						<li>Home</a>
+						</li>
+				</ul>
+				<?php }else{?>
+				<ul class ="menuicon" style="display: inline-block;">
+					<a class="menu" href="/<?php echo "test/normalize/index.php/home"?>">
+						<li> <img src="<?php echo base_url();?>/assets/images/home.png" /></li>
+						<li>Home</a>
+						</li>
+				</ul>
+				<?php }?>
+	
+	<ul class ="menuicon" style="display: inline-block;">
+			<a class="menu" href="/<?php echo "test/normalize/index.php/home/emails"?>">
+				<li> <img src="<?php echo base_url();?>/assets/images/mail.png" /></li>
+				<li>Email</li></a>
+	</ul>
+	<ul class ="menuicon" style="display: inline-block;">
+			<a class="menu" href="/<?php echo "test/normalize/index.php/home/update"?>">
+				<li> <img src="<?php echo base_url();?>/assets/images/create.png" /></li>
+				<li>Issues</li></a>
+	</ul>
+	<ul class ="menuicon" style="display: inline-block;">
+			<a class="menu"href="/<?php echo "test/normalize/index.php/home/statusreports"?>">
+				<li align ="center"> <img src="<?php echo base_url();?>/assets/images/repot.png" /></li>
+				<li>Status Report</li></a>
+	</ul>
+	<ul class ="menuicon" style="display: inline-block;">
+			<a class="menu"href="/<?php echo "test/normalize/index.php/home/releaseprojects"?>">
+				<li> <img src="<?php echo base_url();?>/assets/images/list.png" /></li>
+				<li>Projects </li></a>
+	</ul>
+	<ul class ="menuicon" style="display: inline-block;">
+			<a class="menu" href="/<?php echo "test/normalize/index.php/home/charts"?>">
+				<li> <img src="<?php echo base_url();?>/assets/images/charts.png" /></li>
+				<li>Charts</li></a>
+	</ul>
 </div>
 
 <div class="logout">

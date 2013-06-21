@@ -6,6 +6,8 @@
 		<!----  JS/ CSS all scripts go here.. -->		
 		<link rel="stylesheet" href="<?php echo base_url();?>/assets/css/style.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>/assets/css/main.css">
+		<script  src ="<?php echo base_url();?>/assets/js/jquery-1.10.1.min.js"></script>
+		<script  src ="<?php echo base_url();?>/assets/js/script.js"></script>
 		<link rel="stylesheet" href="<?php echo base_url();?>/assets/font/stylesheet.css" type="text/css" charset="utf-8"> <!-- link to style sheet -->
 		<script src='<?php echo base_url();?>/assets/js/script.js'></script>  <!-- link to JS functions -->
 		<!--  link to font style sheets -->

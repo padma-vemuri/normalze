@@ -3,12 +3,14 @@
 		exit('No Direct script would be allowed');
 	class Home extends CI_Controller{
 
-		public function index(){
+	     function index(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
 
                $this->load->view('header');
 			$this->load->view('menu');
+               $this->load->view('search');
+               $this->load->view('email');
 			$this->load->model('user_model');
 			$query = $this->user_model->casesummary();
 			$this->load->library('table');
@@ -85,7 +87,7 @@
 			$query = $this->user_model->open24();
                
                if($query->num_rows() > 0){
-                    echo "<div style=\"width:100%;\" id = \"open24title\">";
+                    echo "<div style=\"width:auto;\" id = \"open24title\">";
                     $this->table->set_template($tmp2);
                     $this->table->set_empty("Not Defined");
                     $this->table->set_caption('Q1FY14-Issues open in the last 24 hours');
@@ -101,11 +103,12 @@
                echo "</div>";
 
                if($query->num_rows() > 0){
-                    echo "<div style=\"width:70%;\" id  =\"cases24title\">";
+                    echo "<div style=\"width:60%;\" id  =\"cases24title\">";
                     $query = $this->user_model->cases24();
 	         		$this->table->set_template($tmp3);
                     $this->table->set_empty("Not Defined");
                     $this->table->set_caption('Q1FY14-Issues worked on last 24 Hours');
+                    //echo $this->curPageURL();
                     echo $this->table->generate($query);
                }
                else{
@@ -256,6 +259,7 @@
 		function releaseprojects(){
 			$this->load->view('header');
 			$this->load->view('menu');
+               $this->load->view('search');
 			$this->load->model('user_model');
 			$query = $this->user_model->projectlist();
 			$this->load->library('table');
@@ -311,14 +315,13 @@
 			$this->load->view('charts');	
 		}
 		function email(){
+
                if(!isset($this->session->userdata['username']))
                     redirect('login');
                $this->load->model('user_model');
                $this->load->library('table');
-              
-
                $tmp2 = array (
-                              'table_open'          => '<div id="closed" style ="z-index:2; position:relative; top:200px;"><table style = "font-size:14px;width:200%;white-space:nowrap; overflow:auto;border:1px solid">',
+                              'table_open'          => '<div id="closed" style ="z-index:2; position:relative; top:200px;"><table style = "font-size:12px;font-family:calibri;line-height:14px;width:200%;white-space:nowrap; overflow:auto;border:1px solid">',
 
                               'heading_row_start'   => '<tr>',
                               'heading_row_end'     => '</tr>',
@@ -337,87 +340,160 @@
 
                               'table_close'         => '</table></div>'
                          );
-               $query = $this->user_model->perfapp();
-               $this->table->set_template($tmp2);
-               $perfapp = $this->table->generate($query);
-               $countperf =  $query->num_rows();
-               $query = $this->user_model->estatusreportinc();
-               $this->table->set_template($tmp2);
-               $estatusreportinc = $this->table->generate($query);
-               $countinc=  $query->num_rows();
-               $query = $this->user_model->estatusreportpbi();
-               $this->table->set_template($tmp2);
-               $estatusreportpbi = $this->table->generate($query);
-               $countpbi =  $query->num_rows();
-               $query = $this->user_model->closed1();
-               $countclosed = $query->num_rows();
-               $query = $query->result();
-               $closed = "<table style = \"font-size:14px;width:170%;white-space:nowrap; overflow:auto;border:1px solid\">
-                              <tr style=\"border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;\">
-                                  <th style=\"white-space:nowrap;\">Issue Reported Date</th>
-                                  <th style=\"white-space:nowrap;\">Issue Number</th>
-                                  <th style=\"white-space:nowrap;\">Application</th>    
-                                  <th style=\"white-space:nowrap;\">Priority</th>  
-                                  <th style=\"white-space:nowrap;\">DB/FE</th>
-                                  <th style=\"white-space:nowrap;\">Database</th>
-                                  <th style=\"white-space:nowrap;\">Supported DB </th>
-                                  <th style=\"white-space:nowrap;\">Analyst</th>
-                                  <th style=\"white-space:nowrap;\">Status</th>
-                                  <th style=\"white-space:nowrap;\">Release Related</th>
-                                  <th style=\"white-space:nowrap;\">Recommendations</th>
-                                  <th style=\"white-space:nowrap;\">Summary</th>
-                                  <th style=\"white-space:nowrap;\">Case/PBI</th>    
-                              </tr>";
-               foreach ($query as $row) {
-                         $closed .= "<tr style=\"border:1px;\">
-                                          <td style=\"border:1px solid;\">". $row->IssueReportedDate ."</td>
-                                          <td style=\"border:1px solid;\" >". $row->CaseNo."</td>
-                                          <td style=\"border:1px solid;\" >". $row->Application ."</td>
-                                          <td style=\"border:1px solid;\" >". $row->Priority ."</td>
-                                          <td   style='border:1px solid;text-align:center;'>". $row->DBFE ."</td>
-                                          <td style=\"border:1px solid;\" >". $row->Database ."</td>
-                                          <td  style='border:1px solid;text-align:center;'>". $row->SupportedDB ."</td>
-                                          <td style=\"border:1px solid;\">". $row->Analyst ."</td>
-                                          <td style=\"border:1px solid;\">". $row->Status."</td>
-                                          <td  style='border:1px solid;text-align:center;'>". $row->ReleaseRelated ."</td>  
-                                          <td style=\"border:1px solid;\">".  $row->Recommendations."</td>
-                                          <td style=\"border:1px solid;\">".$row->Summary."</td>
-                                          <td style='border:1px solid;text-align:center;'>". $row->CasePBI ."</td>
-                                        </tr>";                            
+               $tmp1 = array (
+                              'table_open'          => '<table style = "font-size:12px;font-family:calibri;line-height:14px;width:450px;white-space:nowrap; overflow:auto;border:1px solid">',
+
+                              'heading_row_start'   => '<tr>',
+                              'heading_row_end'     => '</tr>',
+                              'heading_cell_start'  => '<th style="border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;">',
+                              'heading_cell_end'    => '</th>',
+
+                              'row_start'           => '<tr style="border-left:1px dotted;">',
+                              'row_end'             => '</tr>',
+                              'cell_start'          => '<td style=" width:auto;padding:5px;border:1px solid; align:left;vertical-align:top;">',
+                              'cell_end'            => '</td>',
+
+                              'row_alt_start'       => '<tr style="border-left:1px dotted;">',
+                              'row_alt_end'         => '</tr>',
+                              'cell_alt_start'      => '<td style="padding:5px;border:1px solid;align:left;vertical-align:top;">',
+                              'cell_alt_end'        => '</td>',
+
+                              'table_close'         => '</table>'
+                         );
+               if($this->input->post('emailform')){
+               
+                    if($this->input->post('casesummary')){
+
+                         $query = $this->user_model->casesummary();
+                         $casesummary = '<b>Case Summary </b> <br/>';
+                         $this->table->set_template($tmp1);
+                         $this->table->set_empty("0");
+                         //$this->table->set_caption('Q1FY14-Issues Summary');
+                         if($query->num_rows() > 0)
+                           $casesummary .= $this->table->generate($query);
+                         else
+                         $casesummary =  "NO Projects";
+                    }
+                    if($this->input->post('statusreport')){
+     
+                         $query = $this->user_model->perfapp();
+                         $this->table->set_template($tmp2);
+                         $perfapp = '<b>Issues Reported by Application/Performance Team(Extended Version) </b><br/>';
+                         $perfapp .= $this->table->generate($query);
+                         $perfapp .='<br/>'.$query->num_rows().'Records.';
+
+                         $query = $this->user_model->estatusreportinc();
+                         $this->table->set_template($tmp2);
+                         $estatusreportinc = '<b>Issues Reported by  Support Teams</b><br/>';
+                         $estatusreportinc .= $this->table->generate($query);
+                         $estatusreportinc .= '<br/>'.$query->num_rows().'Records.';
+
+                         $query = $this->user_model->estatusreportpbi();
+                         $this->table->set_template($tmp2);
+                         $estatusreportpbi = '<b>Issues Reported by  Performance Team</b><br/>';
+                         $estatusreportpbi .= $this->table->generate($query);
+                         $estatusreportpbi .='<br/>'.$query->num_rows().'Records';
+
+                         $query = $this->user_model->closed1();
+                         $closed = '<b>Closed Issues</b><br/>';
+                         $countclosed = $query->num_rows();
+                         $query = $query->result();
+                         $closed .= "<table style = \"font-size:14px;width:170%;white-space:nowrap; overflow:auto;border:1px solid\">
+                                        <tr style=\"border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;\">
+                                            <th style=\"white-space:nowrap;\">Issue Reported Date</th>
+                                            <th style=\"white-space:nowrap;\">Issue Number</th>
+                                            <th style=\"white-space:nowrap;\">Application</th>    
+                                            <th style=\"white-space:nowrap;\">Priority</th>  
+                                            <th style=\"white-space:nowrap;\">DB/FE</th>
+                                            <th style=\"white-space:nowrap;\">Database</th>
+                                            <th style=\"white-space:nowrap;\">Supported DB </th>
+                                            <th style=\"white-space:nowrap;\">Analyst</th>
+                                            <th style=\"white-space:nowrap;\">Status</th>
+                                            <th style=\"white-space:nowrap;\">Release Related</th>
+                                            <th style=\"white-space:nowrap;\">Recommendations</th>
+                                            <th style=\"white-space:nowrap;\">Summary</th>
+                                            <th style=\"white-space:nowrap;\">Case/PBI</th>    
+                                        </tr>";
+                         foreach ($query as $row) {
+                                   $closed .= "<tr style=\"border:1px;\">
+                                                    <td style=\"border:1px solid;\">". $row->IssueReportedDate ."</td>
+                                                    <td style=\"border:1px solid;\" >". $row->CaseNo."</td>
+                                                    <td style=\"border:1px solid;\" >". $row->Application ."</td>
+                                                    <td style=\"border:1px solid;\" >". $row->Priority ."</td>
+                                                    <td   style='border:1px solid;text-align:center;'>". $row->DBFE ."</td>
+                                                    <td style=\"border:1px solid;\" >". $row->Database ."</td>
+                                                    <td  style='border:1px solid;text-align:center;'>". $row->SupportedDB ."</td>
+                                                    <td style=\"border:1px solid;\">". $row->Analyst ."</td>
+                                                    <td style=\"border:1px solid;\">". $row->Status."</td>
+                                                    <td  style='border:1px solid;text-align:center;'>". $row->ReleaseRelated ."</td>  
+                                                    <td style=\"border:1px solid;\">".  $row->Recommendations."</td>
+                                                    <td style=\"border:1px solid;\">".$row->Summary."</td>
+                                                    <td style='border:1px solid;text-align:center;'>". $row->CasePBI ."</td>
+                                                  </tr>";                            
+                         }
+                         $closed .="</table>";
+                         $closed .= '<br/>'.$countclosed.'Records';
+                    }
+                    if($this->input->post('projectslist')){
+                         $releaseprojects = '<b> Project List </b><br/>';
+                         $query = $this->user_model->projectlist();
+                         $this->table->set_template($tmp1);
+                         $countprojects = $query->num_rows(); 
+                         $releaseprojects .= $this->table->generate($query);
+                    }
+
+                         $username = $this->session->userdata('username');
+          			$this->load->library('email');
+          			$this->email->set_newline("\r\n");
+          			$this->email->from($username.'@cisco.com', '');
+          			$this->email->to($username.'@cisco.com', ''); 
+          			$this->email->subject('Status Report for Normalization');
+                         //$body = array('$perfapp','$statusreport','$closed');
+                          if(!$this->input->post('casesummary')){
+                              $casesummary = '';
+                          }
+                            elseif(!$this->input->post('projectslist')){
+                              $releaseprojects = '';
+                            }
+                             elseif(!$this->input->post('statusreport')){
+                              $estatusreportinc ='';
+                              $estatusreportpbi ='';
+                              $perfapp = '';
+                              $closed = '';
+                              $countperf = '';
+                             }
+
+
+                         $this->email->message('<html> 
+                                                  <body>
+                                                       '.$casesummary.'<br/><br/><br/>
+                                                       '.$releaseprojects.'<br/><br/><br/>
+                                                       '.$estatusreportinc.'<br/>
+                                                       '.$estatusreportpbi.'<br/>
+                                                       '.$perfapp.'<br/>
+                                                       '.$closed.'
+                                                   </body>
+                                                 </html>
+
+                                                  ');
                }
-               $closed .="</table>";
-               $username = $this->session->userdata('username');
-			$this->load->library('email');
-			$this->email->set_newline("\r\n");
-			$this->email->from($username.'@cisco.com', '');
-			$this->email->to($username.'@cisco.com', ''); 
-			$this->email->subject('Status Report for Normalization');
-               $body = array('$perfapp','$statusreport','$closed');
-			$this->email->message('<html> 
-                                        <body>
-                                              
-                                             <b>Issues Reported by  Support Team</b>'.$estatusreportinc.'
-                                             <br/><br/><br/>
-                                             '.$countinc.' Records<br/><br/><br/>
-                                             <b>Issues Reported by  Performance Team</b>'.$estatusreportpbi.
-                                             '<br/>'.$countpbi.' Records<br/><br/><br/>
-                                             <b>Issues Reported by Application/Performance Team(Extended Version) </b>'.$perfapp.'
-                                             <br/>'.$countperf.' Records<br/><br/><br/>
-                                             <b>Closed Issues</b>'.$closed.'<br/>'.$countclosed.' Records<br/> 
-                                             
-                                              <br/>
-                                         </body>
-                                   </html>
-
-                                        ');
-
-
-			if ($this->email->send()){
+               if ($this->email->send()){
                     $this->session->set_userdata('sucesslog','<p class="sucesslog">Your Email has been sent!</p>');
-				redirect('home/statusreports');
+				redirect('home/emails');
                }
 			else
 				echo $this->email->print_debugger();
+          }
+          function emails(){
+                if(!isset($this->session->userdata['username']))
+                    redirect('login');
+               echo $this->session->userdata('sucesslog');
+               $this->session->unset_userdata('sucesslog');
+               $this->load->view('header');
+               $this->load->view('menu');
+               //$this->load->view('search');
+               $this->load->view('emailform');
+
           }
           function search(){
                if(!isset($this->session->userdata['username']))
@@ -449,15 +525,19 @@
               );
                $this->table->set_caption('<h2 class="tableheading">Your Search Results</h2>');
                $this->table->set_template($tmpl);
+               $data['query'] = $query->result();
                if($query->num_rows()>0){
-                    $this->load->view('search');
-                    echo $this->table->generate($query);
-                    echo"<input type='button' id=\"button1\" value=\"Back\" onClick=\"javascript:location.href = 'update';\" /></div>";
+                     $this->load->view('update',$data);
+                   // $this->load->view('search');
+                   // echo $this->table->generate($query);
+                    echo"<input type='button' id=\"button1\" value=\"Back\" onClick=\"window.history.back();\" /></div>";
                }
                else{
                     $this->load->view('search');
-                    echo "<div id =\"error\"><p id =\"error\"> No records are found. Please Search Again </p>"; 
-                    echo"<input type='button' id=\"button\" value=\"Back\" onClick=\"javascript:location.href = 'update';\" /></div>"; 
+                    echo "<div id =\"error\"><p id =\"error\"> No records are found. Please Search Again <br/><br/>
+                                             <b>Hint</b> :  Please try adding * at the start or end of the string.<br/><br/>
+                                             Example: '<b>*YourStringHere*</b>' without the quotes for better results </p> "; 
+                    echo"<input type='button' id=\"button\" value=\"Back\" onClick=\"window.history.back();\" /></div>"; 
 
                }              
           }
@@ -506,8 +586,21 @@
                elseif(!$query) 
                     echo "<p>No changes were made. </p>";
           }
+     }
+     class CurrentPage {
+         public  function curPageURL() {
+               $pageURL = 'http';
+               //    if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+               $pageURL .= "://";
+               if ($_SERVER["SERVER_PORT"] != "80") {
+               $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+               } else {
+               $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+               }
+               return $pageURL;
+          }
+     }
+      
 
-
-	}
 ?>
 

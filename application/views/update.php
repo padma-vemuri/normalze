@@ -35,12 +35,12 @@ foreach($query as $row){
 
     //echo "<td> <a id='link' href=''>Edit</a></td>"
 
-    echo "<td  >". $row->IssueReportedDate ."</td>";
+    echo "<td >". $row->IssueReportedDate ."</td>";
  	//echo "<td>". $row->CaseNo ."</td>";  
 
  	echo  "<td  >"."<a href='' style=\"color:blue;\" onclick =\"javascript: window.open('view/".$incnumber."', 'window_name', 'width = 250, height = 250,scrollbars=yes');\">Audit</a>".anchor('home/create/'.$incnumber, $row->CaseNo,array('id'=>'edit'))."</td>"; 
-  echo "<td >". $row->Application ."</td>";
- 	echo "<td >". $row->Priority ."</td>";
+  echo "<td>". $row->Application ."</td>";
+ 	echo "<td > <pre id='td'>". $row->Priority ."</pre></td>";
  	echo "<td   style='text-align:center;'>". $row->DBFE ."</td>";
  	echo "<td >". $row->Database ."</td>";  
  	echo "<td  style='text-align:center;'>". $row->SupportedDB ."</td>";

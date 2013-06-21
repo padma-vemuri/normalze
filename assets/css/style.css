@@ -1,16 +1,26 @@
 
 body{ background-color: white; line-height: 1em;  }
  #contents { width: 100% }
- #wrapper{ width: 1200px; float:left; margin: 0 auto; }	
+ #wrapper{ width: 1200px; float:left; margin: 0 auto; }
+
  label{ width: 110px;font-family: Arial;font-size: 12px; float:left;display:inline-block;color:black; padding-top: 5px;}
- label.signin{ width: 110px;float:left;display:inline-block;color:white; padding-top: 5px;}
+ label.signin{ width: 100px;float:left;;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 1;
+               display:inline-block;color:white; padding-top: 5px;}
+#fromdiv{position: relative;}
 
-
-#form{ -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;font: 15px/30px 'OpenSansLight', Arial, sans-serif;line-height: 1.3em;padding : 30px 40px 40px 30px;background-color:rgba(65,105,225,0.7);color: whitesmoke; clear:both; float: right; position: absolute; top:90px; }
+#form{ -webkit-border-radius: 5px; -moz-border-radius: 5px;width: auto; 
+      border-radius: 5px;font: 15px/30px 'OpenSansLight', Arial, sans-serif;line-height: 1.3em;
+      padding : 30px 40px 40px 30px;background-color:rgba(65,105,225,.56);
+      color: whitesmoke; clear:both; float: right; position: absolute; top:90px; }
+#emailform{ -webkit-border-radius: 5px; -moz-border-radius: 5px;width: auto; 
+      border-radius: 5px;font: 15px/30px 'OpenSansLight', Arial, sans-serif;line-height: 1.3em;
+      padding : 30px 40px 40px 30px;width:300px;background-color:rgba(65,105,225,.56);
+      color: whitesmoke; clear:both; float: right; position: absolute; top:90px; }
 
 button.btn { margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; color:#333;cursor:pointer;}
-
-#button,#button1,#buttton { float:right;margin-right: 20px; text-align: left;font:  11px/14px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; color:#333;cursor:pointer;}
+ul{display:inline-block;list-style-type: none;margin: 0px,-10px,0,0;}
+li{text-decoration:none;list-style-type: none;text-align: center;margin-left: -30px;padding-right: 10px;padding-top: 3px;padding-bottom: 3px;}
+#button,#button1,#buttton { float:right;margin-right: 20px; text-align: left;font:  12px/14px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; color:#333;cursor:pointer;}
 #button:hover{
 	background-color:rgba(65,105,225,0.8);
 	color: white;
@@ -22,26 +32,31 @@ button.btn { margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLigh
 button#update {  margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; text-transform:uppercase;color:#333;cursor:pointer;}
 
 pre{font:  12px/12px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;}
+pre#td{ font-family: calibri; font-size: 12px; line-height: 13px;
 
-#form {
+}
+
+/*#form {
    -moz-box-shadow: inset 0 0 30px 3px rgba(69, 113, 218,0.5);
    -webkit-box-shadow: inset 0 0 30px 3px rgba(69, 113, 218,0.5);
    box-shadow: 0 0 30px 3px rgba(69, 113, 218,0.5);
-}
+}*/
 #userid{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 #password{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 #conpassword{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 
-
+h1#reset{font:  20px/22px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0;}
 h1{font:  30px/42px 'OpenSansLight', Arial, sans-serif;letter-spacing: 1;}
+h1.logo{font:  13px/12px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 1px;color: transparent;
+         text-shadow: 0px 9px 2px rgba(255,255,255,1.3);}
 h2{font: 26px/38px 'OpenSansSemibold', Arial, sans-serif;letter-spacing: 0;}
 div.body {font:  18px/22px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; position: absolute; top:90px;overflow: auto; }
 a{text-decoration: none; color:yellow; float:right; }
 
-div#menu{ position:absolute;top:20px;right:10px; display: inline; }
+div#menu{ position:absolute;top:00px;right:10px; }
 
-div#casesummary{position:absolute; top:0px}
-div#cases24{position:absolute; top:0px;left:10px;}
+div#casesummary{position:absolute; top:10px}
+div#cases24{position:absolute; top:10px;left:0px;}
 div#open24{position:relative; top:100px;}
 
 div#footer{position: relative;margin-top: -100px;height: 150px;clear:both;}
@@ -51,17 +66,17 @@ div#new{position:absolute; top:170px;}
 div#email{position:absolute; top:180px;}
 
 div.logout{position: absolute;top:110px;right:30px; }
-
-div#casesummarytitle{position:absolute; top:135px;}
-div#open24title{position:absolute; top:385px;}
-div#open24titleE{position:absolute; top:500px;border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
-div#cases24title{position:absolute; top:135px; left: 500px;}
+div.subscript{position:absolute;top:135px;right:10px;font:  11px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:purple;}
+div#casesummarytitle{position:absolute; top:145px;}
+div#open24title{position:absolute; top:395px;}
+div#open24titleE{position:absolute; top:510px;border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
+div#cases24title{position:absolute; top:145px; left: 400px;}
 div#cases24titleE{position:absolute; top:155px; left: 700px; border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
 
-
+div.jqoutput{position:absolute;float:right;font:  11px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:purple; }
 a.menu{text-decoration: none; color:black;width:100%; float:right;font:  13px/18px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;}
 
-a.menu:hover{color:blue;}
+a.menu:hover{color:black;opacity: 2;}
 div#addform{font:  10px/14px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;position:absolute; top:00px;}
 
 a#link{text-decoration: none; color:black; float:right;font:  12px/18px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; }
@@ -82,7 +97,7 @@ a#edit{text-decoration: none; color:black;width:100%; float:right;}
 a#edit:hover{color:green;}
 
 div#addform{position: absolute; top: 90px;}
-div#error{position: absolute;top:200px;}
+div#error{font:  14px/16px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0px;position: absolute;top:200px;}
 
 
 #createform{ -webkit-border-radius: 5px; -moz-border-radius: 5px;line-height: 1; border-radius: 5px;font-size:10px;font-family: Arial; padding : 30px 40px 0px 30px;background-color:rgba(65,105,225,0.1); ;color: black;clear:both; float: right; position: absolute; top:-10px; width:650px; }
@@ -98,11 +113,13 @@ div#welcome:hover{color:green;}
 input, select{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;letter-spacing: 0.4px; padding:1px;  color:black; border:solid 1px #ccc; margin:0 0 0px;}
 select.search,input.search { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  13px/13px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0.4px; padding:3px;  color:black; border:solid 1px #ccc; margin:0 0 0px; width: 180px;}
 
-.menuicon:hover{background-color:rgba(65,105,225,0.1);padding:10px 0px 0px 15px; border-radius:5px;transition:1200ms;}
-.menuicon{padding-top: 10px;}
+.menuicon:hover{background-color:rgba(65,105,225,0.3);transition:1200ms;border-radius: 7px;}
+.menuicon{padding-top: 1px;}
 
 input.search:focus{background-color:rgba(65,105,225,0.1);}
 
 input#button1{position:absolute; top: 180px;}
 
 div#search{font:  16px/13px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0;}
+
+div#emailsform{position: absolute; top:100px;}

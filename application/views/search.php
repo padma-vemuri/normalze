@@ -15,7 +15,7 @@ $list = array(
 		 'SUPPORTED_DB' =>'Supported DB',
 		 'STATUS'  =>'Status',
 		 'CASE_PBI' =>'Case PBI',
-		 'RELEASE_RELATED' =>'Release Relates',
+		 'RELEASE_RELATED' =>'Release Related',
 		 'ANALYST' =>'Analyst'
 			);
 

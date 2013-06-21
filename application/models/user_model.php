@@ -132,8 +132,8 @@ class User_model extends CI_Model{
 							ANALYST as \"Analyst\",
 							STATUS as \"Status\",
 							RELEASE_RELATED as \"ReleaseRelated\",
-							'<div style=\"width:300px; word-break:break-all;\">'||RECOMMENDATIONS||'</div>' as \"Recommendations\",
-							'<div style=\"width:300px; word-break:break-all;\">'||SUMMARY||'</div>'  as \"Summary\",
+							'<div style=\"width:300px; word-break:hyphenate;\">'||RECOMMENDATIONS||'</div>' as \"Recommendations\",
+							'<div style=\"width:300px; word-break:hyphenate;\">'||SUMMARY||'</div>'  as \"Summary\",
 							CASE_PBI as \"CasePBI\"
 							from gdcp.RELEASE_STATUS_REPORT_V
 							order by issue_reported_date desc,CASE_PBI asc, release_related desc 
@@ -295,22 +295,34 @@ class User_model extends CI_Model{
 
 	}
 	function search(){
+		function remove_characters($str)
+		{
+			$find = array("+","*");
+			$replace = array("%","%");
+			return    str_replace($find, $replace, $str);
+		}
 
-		$search = $this->db->query("SELECT 
-										'<div align=\"left\" style=\"width:90px\">'||ISSUE_REPORTED_DATE||'</div>'  as \"Reported Date\",
-										'<div style=\"width:130px\">'||CASE_NO||'</div>' as \"Issue Number\",
-										'<div align=\"left\"style=\"width:250px; white-space:pre-wrap;\">'||APPLICATION||'</div>' as \"Application\",
-										'<div style=\"width:160px\">'||priority||'</div>'  as \"Priority\",
-										'<div align=\"center\">'||DB_FE||'</div>' as \"DB/FE\",
-										'<div align=\"left\" style=\"width:90px\">'||DB||'</div>' as \"DataBase\",
-										'<div align=\"center\">'||SUPPORTED_DB||'</div>'  as \"Supported DB\" ,
-										'<div align=\"left\" style=\"width:90px\">'||ANALYST||'</div>' as \"Analyst\",
-										'<div align=\"left\"style=\"width:200px\">'||STATUS||'</div>'as \"Status\",
-										'<div align=\"center\">'||RELEASE_RELATED ||'</div>'as \"Release Related\",
-										'<div style=\"width:300px\">'|| RECOMMENDATIONS||'</div>' as \"Recommendations\",
-										'<div style=\"width:300px\">'|| SUMMARY||'</div>' as \"Summary\",
-										'<div align=\"center\">'||CASE_PBI||'</div>' as \"Case/PBI\"
-										 from  gdcp.RELEASE_STATUS_REPORT_V where ".$this->input->post('list')."= '".$this->input->post('search')."' order by ".$this->input->post('list') );
+		$searchString = remove_characters($this->input->post('search'));
+
+
+		$search = $this->db->query("SELECT ID, 
+
+							ISSUE_REPORTED_DATE as \"IssueReportedDate\",
+							CASE_NO as \"CaseNo\",
+
+							APPLICATION as  \"Application\",
+							PRIORITY as \"Priority\",
+							DB_FE as \"DBFE\",
+							DB as \"Database\",
+							SUPPORTED_DB as \"SupportedDB\",
+							ANALYST as \"Analyst\",
+							STATUS as \"Status\",
+							RELEASE_RELATED as \"ReleaseRelated\",
+							'<div style=\"width:300px; word-break:hyphenate;\">'||RECOMMENDATIONS||'</div>' as \"Recommendations\",
+							'<div style=\"width:300px; word-break:hyphenate;\">'||SUMMARY||'</div>'  as \"Summary\",
+							CASE_PBI as \"CasePBI\"
+										
+										 from  gdcp.RELEASE_STATUS_REPORT_V where ".$this->input->post('list')." like '".$searchString."' order by ".$this->input->post('list') );
 		if($search)
 			return $search;
 		else

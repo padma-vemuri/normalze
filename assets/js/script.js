@@ -1,23 +1,28 @@
-fields = 1;
-function addInput() {
-if (fields != 10) {
-document.getElementById('domains').innerHTML += "<label>+ Release<input type='text' class ='adddomain' name ='domain"+fields+"' /></label><br />";
-fields += 1;
-} else {
-document.getElementById('domains').innerHTML += "<br />Only 10 upload fields allowed.";
-document.form.add.disabled=true;
-}
-}
+$(function(){
+	$('#userid').bind('input propertychange',function(){
+		if($(this).val().length > 13)
+			$('#loginjs').html('Your userid can not be more than 13 characters');
+		else if($(this).val().length <6)
+			$('#loginjs').html('Your username can not be less than 6 characters');
+		else if($(this).val().length > 6 && $(this).val().length < 13)
+			$('#loginjs').html('');
+});
+	$('#password').bind('input propertychange',function(){
+		if($(this).val().length < 8)
+			$('#passwordjs').html('Your password can not be less than 8 characters');
+		else if($(this).val().length > 8)
+			$('#passwordjs').html('');	
 
-function sendform(){
 
-var r=confirm("  Please confirm ");
-if (r==true)
-  {
-  return true;
-  }
-else
-  {
-return false;
-}
-  }
+
+});
+	$('#casenumber').bind('input propertychange',function(){
+		if($(this).val().length > 15)
+			$('#casenumberjs').html('Your Issue Number can not be more than 15 characters');
+		else if($(this).val().length < 15)
+			$('#casenumberjs').html('');	
+	});
+
+});
+
+

@@ -55,7 +55,8 @@
 		$priority =array(
 					'name' => 'priority',
 					'id' =>'priority',
-					'size' =>21,
+					'rows' =>3,
+					'cols' =>20,
 					'required' =>'required',
 					'value'=>$priority
 
@@ -91,6 +92,7 @@
 						'value' =>'Delete',
 						'id'	=>'button',
 						'name' =>'delete',
+						'style' =>'top:10px',
 						'onclick'=>'return confirm(\'Do really want to delete this Issue/Case ? \');');
 
 		$casenumber = array(
@@ -138,6 +140,7 @@
 	
 		echo form_label('Issue Number','casenumber');
 		echo form_input($casenumber);
+		echo "<br/><br/><div id=\"casenumberjs\" style =\"top:65px;right:130px; position:absolute;\" class =\"jqoutput\"></div>";
 		echo "<br/><br/>";
 
 		echo form_label('GBP','gbp');
@@ -156,7 +159,7 @@
 		echo "<br/><br/>";
 
 		echo form_label('Priority','priority');
-		echo form_input($priority);
+		echo form_textarea($priority);
 		echo "<br/><br/>";
 
 		if($populate){
@@ -276,15 +279,16 @@
 		echo "<br/>";
 		
 		
-		echo form_submit($inputSubmit);
+		echo form_submit($inputSubmit); 
 		//echo form_submit($inputCancel);
 		
 		echo"<input type='button' id=\"button\" name ='cancel' value=\"Cancel\" 
 				onclick=\" var result = confirm('Do really want to Cancel ?'); 
 					if(result == true)
-						javascript:location.href = '/test/normalize/index.php/home/update';
+						window.history.back();
 					else
 						 return false;;\" />";
+		echo "<h1 class= 'logo' style='position:absolute;right:5px; bottom:-23px;'><img src=\"/test/normalize/assets/images/ciscologo32.jpg\"/> </h1>";
 		echo form_close();
 		
 
