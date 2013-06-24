@@ -3,7 +3,9 @@
 error_reporting(0);
 echo "<br/>";
 $formHTML = array(
-					'id' => 'search');
+					'id' => 'search',
+					'method' =>'get'
+					);
 echo form_open('home/search',$formHTML);
 
 $list = array(
@@ -22,6 +24,7 @@ $list = array(
 $inputUsername = array(
 				'name' =>'search',
 				'class'   =>'search',
+				'Required' =>'true',
 				'placeholder'=>'Search here..',
 				'maxlength' => '1300',
 				'size' => '20',

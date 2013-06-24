@@ -14,8 +14,8 @@ body{ background-color: white; line-height: 1em;  }
       color: whitesmoke; clear:both; float: right; position: absolute; top:90px; }
 #emailform{ -webkit-border-radius: 5px; -moz-border-radius: 5px;width: auto; 
       border-radius: 5px;font: 15px/30px 'OpenSansLight', Arial, sans-serif;line-height: 1.3em;
-      padding : 30px 40px 40px 30px;width:300px;background-color:rgba(65,105,225,.56);
-      color: whitesmoke; clear:both; float: right; position: absolute; top:90px; }
+      padding : 30px 40px 40px 30px;width:350px;background-color:rgba(65,105,225,.56);
+      color: whitesmoke; clear:both; float: right; position: absolute; top:50px; }
 
 button.btn { margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; color:#333;cursor:pointer;}
 ul{display:inline-block;list-style-type: none;margin: 0px,-10px,0,0;}
@@ -71,9 +71,9 @@ div#casesummarytitle{position:absolute; top:145px;}
 div#open24title{position:absolute; top:395px;}
 div#open24titleE{position:absolute; top:510px;border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
 div#cases24title{position:absolute; top:145px; left: 400px;}
-div#cases24titleE{position:absolute; top:155px; left: 700px; border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
+div#cases24titleE{position:absolute; top:195px; left: 700px; border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
 
-div.jqoutput{position:absolute;float:right;font:  11px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:purple; }
+div.jqoutput{position:absolute;float:right;font:  11px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:red; }
 a.menu{text-decoration: none; color:black;width:100%; float:right;font:  13px/18px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;}
 
 a.menu:hover{color:black;opacity: 2;}

@@ -83,7 +83,7 @@
 
 		$inputSubmit = array(
 						'type' =>'submit',
-						'value' =>'Submit',
+						'value' =>'Save',
 						'id'	=>'button',
 						'name' =>'submit',
 						'onclick'=>'return confirm(\'Please Confirm !\');');
@@ -115,6 +115,7 @@
 						'id'   =>  	'db',
 						'required' =>'required',
 						'size' =>	21,
+						'required' =>'required',
 						'value'=> $db
 						);
 		
@@ -126,6 +127,14 @@
 		
 		if($populate){	
 			echo form_submit($inputDelete);
+			
+			echo"<input type='button' id=\"button\" name ='cancel' value=\"Cancel\" 
+				onclick=\" var result = confirm('Do really want to Cancel ?'); 
+					if(result == true)
+						window.history.back();
+					else
+						 return false;;\" />";
+			echo form_submit($inputSubmit); 
 			echo form_label('Reported Date','reporteddate');
 			echo form_input($reporteddate1);
 			echo "<br/><br/>";
@@ -133,6 +142,14 @@
 		else{
 			echo form_label('Reported Date','reporteddate');
 			echo form_input($reporteddate);
+			echo"<input type='button' id=\"button\" name ='cancel' value=\"Cancel\" 
+					onclick=\" var result = confirm('Do really want to Cancel ?'); 
+						if(result == true)
+							window.history.back();
+						else
+						 return false;;\" />";
+			echo form_submit($inputSubmit);
+			 
 			echo "<br/><br/>";
 		}
 
@@ -140,7 +157,7 @@
 	
 		echo form_label('Issue Number','casenumber');
 		echo form_input($casenumber);
-		echo "<br/><br/><div id=\"casenumberjs\" style =\"top:65px;right:130px; position:absolute;\" class =\"jqoutput\"></div>";
+		echo "<div id=\"casenumberjs\" style =\"top:65px;right:130px; position:absolute;\" class =\"jqoutput\"></div>";
 		echo "<br/><br/>";
 
 		echo form_label('GBP','gbp');
@@ -169,7 +186,7 @@
 				echo form_label('DB/FE','dbfe').form_radio('dbfe','DB')." Database ".form_radio('dbfe','FE','checked ="TRUE"')." Front End";
 		}
 		else 
-			echo form_label('DB/FE','dbfe').form_radio('dbfe','DB')." Database ".form_radio('dbfe','FE')." Front End";
+			echo form_label('DB/FE','dbfe').form_radio('dbfe','DB','class ="rad"')." Database ".form_radio('dbfe','FE')." Front End";
 
 
 
@@ -246,7 +263,7 @@
 
 		}
 		else
-			echo form_label('Status','status')."".form_radio('status','Open')." Open ".form_radio('status','Closed')." Closed ".
+			echo form_label('Status','status')."".form_radio('status','Open','class ="rad"')." Open ".form_radio('status','Closed')." Closed ".
 						form_radio('status','WIP')." WIP ".form_radio('status','Resolved')." Resolved ".
 						form_radio('status','Recommendations Provided')." Recommendations Provided ".
 						form_radio('status','Waiting For Information')." Waiting For Information ";
@@ -262,7 +279,7 @@
 				echo form_label('Release Related','relrelated').form_radio('relrelated','Y')." Yes ".form_radio('relrelated','N')." No ".form_radio('relrelated','N/A','checked = "TRUE"')." N/A ";		
 		}
 		else
-			echo form_label('Release Related','relrelated').form_radio('relrelated','Y')." Yes ".form_radio('relrelated','N')." No ".form_radio('relrelated','N/A')." N/A ";
+			echo form_label('Release Related','relrelated').form_radio('relrelated','Y','class ="rad"')." Yes ".form_radio('relrelated','N')." No ".form_radio('relrelated','N/A')." N/A ";
 		echo "<br/>";
 		
 		echo "<p style=\"color:darkred; position:absolute; line-height: 1.2em; left:140px;\">Summary: Briefly state problem in your own words. Do not copy paste from &shy;<br/> 
@@ -276,11 +293,11 @@
 		echo form_label('Recommendations','recommendations');
 		echo form_textarea($recommendations);
 
-		echo "<br/>";
+		echo "<br/><br/>";
 		
 		
-		echo form_submit($inputSubmit); 
-		//echo form_submit($inputCancel);
+		if($populate)
+			echo form_submit($inputDelete);
 		
 		echo"<input type='button' id=\"button\" name ='cancel' value=\"Cancel\" 
 				onclick=\" var result = confirm('Do really want to Cancel ?'); 
@@ -288,6 +305,7 @@
 						window.history.back();
 					else
 						 return false;;\" />";
+		echo form_submit($inputSubmit); 
 		echo "<h1 class= 'logo' style='position:absolute;right:5px; bottom:-23px;'><img src=\"/test/normalize/assets/images/ciscologo32.jpg\"/> </h1>";
 		echo form_close();
 		

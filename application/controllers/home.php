@@ -10,7 +10,6 @@
                $this->load->view('header');
 			$this->load->view('menu');
                $this->load->view('search');
-               $this->load->view('email');
 			$this->load->model('user_model');
 			$query = $this->user_model->casesummary();
 			$this->load->library('table');
@@ -209,7 +208,7 @@
 			$this->load->view('header');
 			$this->load->view('menu');
                $this->load->view('search');
-			$this->load->view('email');
+			//$this->load->view('email');
                echo $this->session->userdata('sucesslog');
                $this->session->unset_userdata('sucesslog');
 			$this->load->model('user_model');  
@@ -318,6 +317,7 @@
 
                if(!isset($this->session->userdata['username']))
                     redirect('login');
+
                $this->load->model('user_model');
                $this->load->library('table');
                $tmp2 = array (
@@ -361,6 +361,11 @@
                               'table_close'         => '</table>'
                          );
                if($this->input->post('emailform')){
+                    if(!$this->input->post('casesummary') && !$this->input->post('closed') && !$this->input->post('projectslist') && !$this->input->post('statusreport') ){
+                         $this->session->set_userdata('errorlog','<p class="sucesslog">You should select atleast one Report !</p>');
+                         redirect('home/emails');  
+                    }
+
                
                     if($this->input->post('casesummary')){
 
@@ -393,12 +398,14 @@
                          $estatusreportpbi = '<b>Issues Reported by  Performance Team</b><br/>';
                          $estatusreportpbi .= $this->table->generate($query);
                          $estatusreportpbi .='<br/>'.$query->num_rows().'Records';
+                    }
+                    if($this->input->post('closed')){
 
                          $query = $this->user_model->closed1();
                          $closed = '<b>Closed Issues</b><br/>';
                          $countclosed = $query->num_rows();
                          $query = $query->result();
-                         $closed .= "<table style = \"font-size:14px;width:170%;white-space:nowrap; overflow:auto;border:1px solid\">
+                         $closed .= "<table style = \"font-family:calibri; font-size:12px;font-size:14px;width:170%;white-space:nowrap; overflow:auto;border:1px solid\">
                                         <tr style=\"border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;\">
                                             <th style=\"white-space:nowrap;\">Issue Reported Date</th>
                                             <th style=\"white-space:nowrap;\">Issue Number</th>
@@ -419,7 +426,7 @@
                                                     <td style=\"border:1px solid;\">". $row->IssueReportedDate ."</td>
                                                     <td style=\"border:1px solid;\" >". $row->CaseNo."</td>
                                                     <td style=\"border:1px solid;\" >". $row->Application ."</td>
-                                                    <td style=\"border:1px solid;\" >". $row->Priority ."</td>
+                                                    <pre><td style=\"border:1px solid; font-family:calibri;\" >". $row->Priority ."</td></pre>
                                                     <td   style='border:1px solid;text-align:center;'>". $row->DBFE ."</td>
                                                     <td style=\"border:1px solid;\" >". $row->Database ."</td>
                                                     <td  style='border:1px solid;text-align:center;'>". $row->SupportedDB ."</td>
@@ -476,7 +483,7 @@
                                                  </html>
 
                                                   ');
-               }
+               
                if ($this->email->send()){
                     $this->session->set_userdata('sucesslog','<p class="sucesslog">Your Email has been sent!</p>');
 				redirect('home/emails');
@@ -484,11 +491,15 @@
 			else
 				echo $this->email->print_debugger();
           }
+          }
           function emails(){
                 if(!isset($this->session->userdata['username']))
                     redirect('login');
                echo $this->session->userdata('sucesslog');
+               echo $this->session->userdata('errorlog');
                $this->session->unset_userdata('sucesslog');
+               $this->session->unset_userdata('errorlog');
+
                $this->load->view('header');
                $this->load->view('menu');
                //$this->load->view('search');
@@ -500,6 +511,7 @@
                     redirect('login');
                $this->load->view('header');
                $this->load->view('menu');
+               $this->load->view('search');
                $this->load->model('user_model');
                $query =  $this->user_model->search();
                $this->load->library('table');

@@ -178,7 +178,7 @@ class User_model extends CI_Model{
 											'<div align=\"left\" style =\" white-space:nowrap;width:340px;\">'||project||'</div>' as \"Project\",	
 											'<div style=\"width:130px\">'||CASE_NO||'</div>'  as \"Issue Number\",
 											'<div align=\"left\" style=\"width:100px;\">'||GBP||'</div>' as \"GBP\",
-											'<div style=\"width:160px\">'||priority||'</div>'  as \"Priority\",
+											'<pre><div style=\"width:160px; font-family:calibri;\">'||priority||'</div></pre>'  as \"Priority\",
 											'<div align=\"left\"style=\"width:140px; white-space:pre-wrap;\">'||APPLICATION||'</div>' as \"Application\",
 											'<div align=\"left\"style=\"width:200px\">'||STATUS||'</div>'as \"Status\",
 											'<div align=\"center\">'||RELEASE_RELATED ||'</div>'as \"Release Related\",
@@ -210,7 +210,7 @@ class User_model extends CI_Model{
 								'<div style=\"width:129px\">'||CASE_NO||'</div>'  as \"Issue Number\",
 								'<div align=\"left\" style=\"width:100px;\">'||GBP||'</div>' as \"GBP\",
 								'<div align=\"left\"style=\"width:200px; white-space:pre-wrap;\">'||APPLICATION||'</div>' as \"Application\",
-								'<div style=\"width:160px\"white-space:pre;>'||priority||'</div>'  as \"Priority\",
+								'<pre><div style=\"width:160px; font-family:calibri;\">'||priority||'</div></pre>'  as \"Priority\",
 								'<div align=\"center\">'||DB_FE||'</div>' as \"DB/FE\",
 								'<div align=\"center\" style=\"width:90px\">'||DB||'</div>' as \"DataBase\",
 								'<div align=\"center\">'||SUPPORTED_DB||'</div>' as \"Supported DB\",
@@ -302,8 +302,8 @@ class User_model extends CI_Model{
 			return    str_replace($find, $replace, $str);
 		}
 
-		$searchString = remove_characters($this->input->post('search'));
-
+		$searchString = remove_characters($this->input->get('search'));
+		$list  = $this->input->get('list');
 
 		$search = $this->db->query("SELECT ID, 
 
@@ -322,7 +322,7 @@ class User_model extends CI_Model{
 							'<div style=\"width:300px; word-break:hyphenate;\">'||SUMMARY||'</div>'  as \"Summary\",
 							CASE_PBI as \"CasePBI\"
 										
-										 from  gdcp.RELEASE_STATUS_REPORT_V where ".$this->input->post('list')." like '".$searchString."' order by ".$this->input->post('list') );
+										 from  gdcp.RELEASE_STATUS_REPORT_V where ".$list." like '".$searchString."' order by ".$list );
 		if($search)
 			return $search;
 		else
