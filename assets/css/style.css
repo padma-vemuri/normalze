@@ -35,6 +35,10 @@ pre{font:  12px/12px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;}
 pre#td{ font-family: calibri; font-size: 12px; line-height: 13px;
 
 }
+div.ui-datepicker{
+ font-size:11px;
+ background: rgba(175,238,238,1);
+}
 
 /*#form {
    -moz-box-shadow: inset 0 0 30px 3px rgba(69, 113, 218,0.5);
@@ -106,7 +110,7 @@ div#error{font:  14px/16px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 
    -webkit-box-shadow: inset 0 0 30px 3px rgba(69, 113, 218,0.5);
    box-shadow: 0 0 30px 3px rgba(69, 113, 218,0.5);
 }
-p.errorlog {color:darkred;font-weight: normal; font-size: 14px;}
+p.errorlog {color:darkred;font-weight: normal;top:0px; font-size: 14px;}
 p.sucesslog{position:absolute; top:10px;font:  13px/13px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0;background-color: rgba(65,105,225,0.1); color:black; padding: 7px 5px 5px 7px; border-radius: 3px;}
 div#welcome{position:absolute;top: 115px; right:99px; color:black;font: 12px/12px 'OpenSansRegular', Arial, sans-serif;padding:0px 0px 0px 0px;}
 div#welcome:hover{color:green;}

@@ -1,6 +1,15 @@
+	<div id="errordiv">
+		<?php
+		echo $this->session->userdata['error'];
+    	$this->session->unset_userdata('error'); 
+    	?>
+	</div>
+
+
 	<div id="addform">
 
 <?php  
+
 	error_reporting(0);
 	 	if($populate){
 
@@ -36,10 +45,11 @@
 						'name' =>'reporteddate',
 						'id'   =>'reporteddate',
 						'placeholder'=>'DD-MM-YYYY',
-						'type' =>'date',
+						'type' =>'text',
 						'required' =>'required',
 						'size' => 21,
-						'value'=>$repdate
+						'value'=>$repdate,
+						'readOnly'=>'readOnly'
 	
 							);
 		$reporteddate1 = array(
@@ -121,9 +131,10 @@
 		
 		echo form_open('home/addform',$formHTML);
 
-		echo $this->session->userdata['error'];
-        $this->session->unset_userdata('error');
+		
         echo form_hidden('caseid',$id);
+        $url = $_SERVER['REQUEST_URI'];
+        echo form_hidden('url',$url);
 		
 		if($populate){	
 			echo form_submit($inputDelete);
@@ -308,10 +319,5 @@
 		echo form_submit($inputSubmit); 
 		echo "<h1 class= 'logo' style='position:absolute;right:5px; bottom:-23px;'><img src=\"/test/normalize/assets/images/ciscologo32.jpg\"/> </h1>";
 		echo form_close();
-		
-
-
-		
-
 ?>
 </div> 

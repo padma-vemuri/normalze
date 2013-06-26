@@ -294,6 +294,18 @@
                     $this->session->set_userdata('error','<p class="errorlog">***Case Number Cannot be blank </p>');
                     redirect('home/create');
                }
+               $path_parts = pathinfo($this->input->post('url'));
+
+               $regularExpression = '/[^a-zA-Z\d\(\):]/';
+               if(preg_match($regularExpression,$this->input->post('casenumber') )){
+                    $this->session->set_userdata('error','<p class="errorlog">***Case Number Cannot have alpha numeric characters. </p>');
+                    redirect('home/create/'.$path_parts['filename']);
+               }
+          
+
+
+
+
                
                $this->load->model('user_model');
                $add = $this->user_model->add();
@@ -303,7 +315,7 @@
                 }
                else{
                     $this->session->set_userdata('errorlog','<p class="errorlog">There was an ERROR. Try again.</p>');
-                    redirect('home/update');
+                    redirect('home/create');
                }
           }
 		function charts(){
@@ -350,12 +362,12 @@
 
                               'row_start'           => '<tr style="border-left:1px dotted;">',
                               'row_end'             => '</tr>',
-                              'cell_start'          => '<td style=" width:auto;padding:5px;border:1px solid; align:left;vertical-align:top;">',
+                              'cell_start'          => '<td style=" width:auto;border:1px solid;padding:5px; align:left;vertical-align:top;">',
                               'cell_end'            => '</td>',
 
                               'row_alt_start'       => '<tr style="border-left:1px dotted;">',
                               'row_alt_end'         => '</tr>',
-                              'cell_alt_start'      => '<td style="padding:5px;border:1px solid;align:left;vertical-align:top;">',
+                              'cell_alt_start'      => '<td style="padding:5px;border:1px solid;padding:5px;align:left;vertical-align:top;">',
                               'cell_alt_end'        => '</td>',
 
                               'table_close'         => '</table>'
@@ -405,21 +417,21 @@
                          $closed = '<b>Closed Issues</b><br/>';
                          $countclosed = $query->num_rows();
                          $query = $query->result();
-                         $closed .= "<table style = \"font-family:calibri; font-size:12px;font-size:14px;width:170%;white-space:nowrap; overflow:auto;border:1px solid\">
+                         $closed .= "<table style = \"font-family:calibri; font-size:12px;line-height:14px;width:170%;white-space:nowrap; overflow:auto;border:1px solid\">
                                         <tr style=\"border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;\">
-                                            <th style=\"white-space:nowrap;\">Issue Reported Date</th>
-                                            <th style=\"white-space:nowrap;\">Issue Number</th>
-                                            <th style=\"white-space:nowrap;\">Application</th>    
-                                            <th style=\"white-space:nowrap;\">Priority</th>  
-                                            <th style=\"white-space:nowrap;\">DB/FE</th>
-                                            <th style=\"white-space:nowrap;\">Database</th>
-                                            <th style=\"white-space:nowrap;\">Supported DB </th>
-                                            <th style=\"white-space:nowrap;\">Analyst</th>
-                                            <th style=\"white-space:nowrap;\">Status</th>
-                                            <th style=\"white-space:nowrap;\">Release Related</th>
-                                            <th style=\"white-space:nowrap;\">Recommendations</th>
-                                            <th style=\"white-space:nowrap;\">Summary</th>
-                                            <th style=\"white-space:nowrap;\">Case/PBI</th>    
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Issue Reported Date</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Issue Number</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Application</th>    
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Priority</th>  
+                                            <th style=\"white-space:nowrap;border:1px solid;\">DB/FE</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Database</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Supported DB </th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Analyst</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Status</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Release Related</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Recommendations</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Summary</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Case/PBI</th>    
                                         </tr>";
                          foreach ($query as $row) {
                                    $closed .= "<tr style=\"border:1px;\">
@@ -511,7 +523,7 @@
                     redirect('login');
                $this->load->view('header');
                $this->load->view('menu');
-               $this->load->view('search');
+               //$this->load->view('search');
                $this->load->model('user_model');
                $query =  $this->user_model->search();
                $this->load->library('table');
@@ -579,12 +591,12 @@
 
                     'row_start'           => '<tr>',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td>',
+                    'cell_start'          => '<td style ="word-break:hyphenate;">',
                     'cell_end'            => '</td>',
 
                     'row_alt_start'       => '<tr>',
                     'row_alt_end'         => '</tr>',
-                    'cell_alt_start'      => '<td>',
+                    'cell_alt_start'      => '<td style ="word-break:hyphenate;">',
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
@@ -597,6 +609,18 @@
                     echo $this->table->generate($query);
                elseif(!$query) 
                     echo "<p>No changes were made. </p>";
+          }
+          function curPageURL() {
+               $pageURL = 'http';
+               if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+               $pageURL .= "://";
+               if ($_SERVER["SERVER_PORT"] != "80") {
+               $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+               }
+               else {
+               $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+               }
+               return $pageURL;
           }
      }
      class CurrentPage {

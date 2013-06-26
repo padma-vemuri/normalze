@@ -25,4 +25,8 @@ $(function(){
 
 });
 
+$(function() {
+	$( "#reporteddate" ).datepicker();
+	
+});
 
