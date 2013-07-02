@@ -14,6 +14,7 @@ $list = array(
 		 'APPLICATION' =>'Application',
 		 'DB_FE' =>	'DB/FE',
 		 'DB'	=>'Database',
+		 'PRIORITY'=>'Priority',
 		 'SUPPORTED_DB' =>'Supported DB',
 		 'STATUS'  =>'Status',
 		 'CASE_PBI' =>'Case PBI',

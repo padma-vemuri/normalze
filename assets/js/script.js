@@ -23,7 +23,14 @@ $(function(){
 			$('#casenumberjs').html('');	
 	});
 
+	setTimeout(function(){
+		$("p.sucesslog").hide('blind',{},500)
+	},5000);
+
+
+
 });
+
 
 $(function() {
 	$( "#reporteddate" ).datepicker();

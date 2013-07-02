@@ -132,6 +132,9 @@
                $this->session->unset_userdata('errorlog');
                $this->load->model('user_model');
                $data['query'] = $this->user_model->update();
+               $data['openCount'] = $this->user_model->openCount();
+               $data['closedCount'] = $this->user_model->closedCount();
+               $data['othersCount'] = $this->user_model->othersCount();
                $this->load->library('table');
                $this->load->view('update',$data);
           }
@@ -234,7 +237,7 @@
 
                     'table_close'         => '</table></div>'
                 );
-               $this->table->set_caption('<h2 class="tableheading">Issues Reported by GBP/Application Support Team</h2><p>'.$query->num_rows().' Records');
+               $this->table->set_caption('<h2 class="tableheading">Issues Reported by GBP/Application Support Team</h2><p class ="count">'.$query->num_rows().' Records</p>');
 			$this->table->set_template($tmpl);
 			$statusreport = $this->table->generate($query);
 			echo $statusreport;
@@ -243,13 +246,13 @@
 
                $this->load->library('table');
               
-               $this->table->set_caption('<br/><br/><h2 class="tableheading">Issues Reported by Application and Performance Support team (Extended Version)</h2><p>'.$query->num_rows().' Records');
+               $this->table->set_caption('<br/><br/><h2 class="tableheading">Issues Reported by Application and Performance Support team (Extended Version)</h2><p class ="count">'.$query->num_rows().' Records');
                $this->table->set_template($tmpl);
                $perfapp = $this->table->generate($query);
                echo $perfapp;
 			$query = $this->user_model->closed();
 			
-               $this->table->set_caption('<br/><br/><h2 class="tableheading">Closed Issues</h2><p>'.$query->num_rows().' Records');
+               $this->table->set_caption('<br/><br/><h2 class="tableheading">Closed Issues</h2><p class ="count">'.$query->num_rows().' Records');
 			$this->table->set_template($tmpl);
 			$closed = $this->table->generate($query);
 			echo $closed;
@@ -282,10 +285,10 @@
 
                     'table_close'         => '</table></div>'
                );
-               $this->table->set_caption('<h2 class="tableheading">Release Projects</h2>');
+               $this->table->set_caption('<h2 class="tableheading">Release Projects</h2><p class = "count">'.$query->num_rows().' Records</p>');
 			$this->table->set_template($tmpl);
 			echo $this->table->generate($query);
-               echo $query->num_rows();	
+              	
 		}
           function addform(){
                if(!isset($this->session->userdata['username']))
@@ -395,29 +398,30 @@
      
                          $query = $this->user_model->perfapp();
                          $this->table->set_template($tmp2);
-                         $perfapp = '<b>Issues Reported by Application/Performance Team(Extended Version) </b><br/>';
+                         $perfapp = '<b>Issues Reported by Application/Performance Team(Extended Version)  </b>'.$query->num_rows().' Records.<br/>';
                          $perfapp .= $this->table->generate($query);
-                         $perfapp .='<br/>'.$query->num_rows().'Records.';
+                         //$perfapp .='<br/>'.$query->num_rows().'Records.';
 
                          $query = $this->user_model->estatusreportinc();
                          $this->table->set_template($tmp2);
-                         $estatusreportinc = '<b>Issues Reported by  Support Teams</b><br/>';
+                         $estatusreportinc = '<b>Issues Reported by  Support Teams  </b>    '.$query->num_rows().' Records.<br/>';
                          $estatusreportinc .= $this->table->generate($query);
-                         $estatusreportinc .= '<br/>'.$query->num_rows().'Records.';
+                        // $estatusreportinc .= '<br/>'.$query->num_rows().'Records.';
 
                          $query = $this->user_model->estatusreportpbi();
                          $this->table->set_template($tmp2);
-                         $estatusreportpbi = '<b>Issues Reported by  Performance Team</b><br/>';
+                         $estatusreportpbi = '<b>Issues Reported by  Performance Team   </b>  '.$query->num_rows().' Records.<br/>';
                          $estatusreportpbi .= $this->table->generate($query);
-                         $estatusreportpbi .='<br/>'.$query->num_rows().'Records';
+                         //$estatusreportpbi .='<br/>'.$query->num_rows().'Records';
                     }
                     if($this->input->post('closed')){
 
                          $query = $this->user_model->closed1();
-                         $closed = '<b>Closed Issues</b><br/>';
                          $countclosed = $query->num_rows();
+                         $closed = '<b>Closed Issues </b> '.$countclosed.' Records <br/>';
+                         
                          $query = $query->result();
-                         $closed .= "<table style = \"font-family:calibri; font-size:12px;line-height:14px;width:170%;white-space:nowrap; overflow:auto;border:1px solid\">
+                         $closed .= "<table style = \"font-family:calibri; font-size:12px;line-height:14px;width:300%;white-space:nowrap; overflow:auto;border:1px solid\">
                                         <tr style=\"border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;\">
                                             <th style=\"white-space:nowrap;border:1px solid;\">Issue Reported Date</th>
                                             <th style=\"white-space:nowrap;border:1px solid;\">Issue Number</th>
@@ -446,18 +450,20 @@
                                                     <td style=\"border:1px solid;\">". $row->Status."</td>
                                                     <td  style='border:1px solid;text-align:center;'>". $row->ReleaseRelated ."</td>  
                                                     <td style=\"border:1px solid;\">".  $row->Recommendations."</td>
-                                                    <td style=\"border:1px solid;\">".$row->Summary."</td>
+                                                    <td  width=\"250px\";style=\"border:1px solid;\">".$row->Summary."</td>
                                                     <td style='border:1px solid;text-align:center;'>". $row->CasePBI ."</td>
                                                   </tr>";                            
                          }
                          $closed .="</table>";
-                         $closed .= '<br/>'.$countclosed.'Records';
+                         //$closed .= '<br/>'.$countclosed.'Records';
                     }
                     if($this->input->post('projectslist')){
-                         $releaseprojects = '<b> Project List </b><br/>';
-                         $query = $this->user_model->projectlist();
+                        
+                         $query = $this->user_model->projectlist(); 
+                         //$countprojects = $query->num_rows(); 
+                         
                          $this->table->set_template($tmp1);
-                         $countprojects = $query->num_rows(); 
+                         $releaseprojects = ' <b> Project List     </b> '.$query->num_rows().'  Projects<br/>';
                          $releaseprojects .= $this->table->generate($query);
                     }
 
@@ -549,8 +555,8 @@
               );
                $this->table->set_caption('<h2 class="tableheading">Your Search Results</h2>');
                $this->table->set_template($tmpl);
-               $data['query'] = $query->result();
-               if($query->num_rows()>0){
+               $data['query'] = $query;
+               if($query != false){
                      $this->load->view('update',$data);
                    // $this->load->view('search');
                    // echo $this->table->generate($query);

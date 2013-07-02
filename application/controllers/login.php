@@ -35,11 +35,19 @@ class Login extends CI_Controller {
 	    if($query){
     			foreach ($query as $row) {
     				if ($row['VALID'] == 'Y'){
-
-    					$this->session->set_userdata('username',$this->input->post('username'));
-    					redirect('home');
-
+    					$query = $this->user_model->first_time_flag();
+    				 	if ($query){
+    				 		foreach ($query as $row) {
+    				 			if($row['FIRST_TIME_FLAG'] == 'Y'){
+    				 				$this->session->set_userdata('username',$this->input->post('username'));	
+    				 				redirect('login/reset');
+    				 			}
+    				 		}
+    				 	}
+				 		$this->session->set_userdata('username',$this->input->post('username'));
+						redirect('home');
     				}
+
     				
     				elseif($row['VALID'] == 'N'){
     				 	$query = $this->user_model->first_time_flag();
@@ -78,14 +86,18 @@ class Login extends CI_Controller {
 		$password = $this->input->post('password');
 		$conpassword = $this->input->post('conpassword');
 		if (strlen($password) < 8 && strlen($conpassword) < 8 ){
-			$this->session->userdata['error'] = "<p class ='errorlog'>Password should be atleast 8 characters</p>"; 
+			$this->session->set_userdata('error',"<p class ='errorlog'>Password should be atleast 8 characters</p>"); 
 			redirect('login/reset');
-            echo $this->session->userdata['error'];
+            
 		}
 		elseif($password !== $conpassword){
-			$this->session->userdata['error'] = "<p class ='errorlog'>Passwords did not match.</p>"; 
+			$this->session->set_userdata('error', "<p class ='errorlog'>Passwords did not match.</p>"); 
 			redirect('login/reset');
-			echo $this->session->userdata['error'];
+			
+		}
+		elseif($password == $conpassword && $password == $this->session->userdata('')){
+			$this->session->set_userdata('error', "<p class ='errorlog'It can not be your ccid.</p>"); 
+			redirect('login/reset');
 		}
 		elseif($password == $conpassword){
 			$query =$this->user_model->setpassword();
@@ -101,7 +113,7 @@ class Login extends CI_Controller {
 	function reset(){
 		$this->load->view('header');
 		$this->load->view('reset');
-		$this->load->view('footer');
+		//$this->load->view('footer');
 	}
 }
 

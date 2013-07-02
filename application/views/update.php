@@ -1,5 +1,17 @@
 <?php
 error_reporting(0);
+
+foreach ($openCount as $row) {
+  echo "<p class = 'countIssues'><b>Open :</b> ".$row->OPEN.' | ' ;
+}
+foreach ($closedCount as $row) {
+  echo " <b>Closed :</b> ".$row->CLOSED.' | ' ;
+}
+foreach ($othersCount as $row) {
+  echo "<b> Rest: </b>".$row->OTHERS.' </p> ' ;
+}
+
+
 ?>
 <table  class="curvedEdges" style = "position:absolute; top:260px;">
   <tr style="background-color:lightblue;white-space:nowrap;text-align:left;">

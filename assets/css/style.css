@@ -56,7 +56,11 @@ h1.logo{font:  13px/12px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 1p
 h2{font: 26px/38px 'OpenSansSemibold', Arial, sans-serif;letter-spacing: 0;}
 div.body {font:  18px/22px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; position: absolute; top:90px;overflow: auto; }
 a{text-decoration: none; color:yellow; float:right; }
-
+fieldset {position:absolute;left:500px; top : 150px;border-radius: 10px;  font:  12px/16px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;
+            -moz-box-shadow: inset 0 0 10px 3px rgba(69, 113, 218,0.2);
+            -webkit-box-shadow: inset 0 0 10px 3px rgba(69, 113, 218,0.2);
+                  box-shadow: 0 0 10px 3px rgba(69, 113, 218,0.2);}
+li.passwordReset {text-align: left; margin-left: 10px;}
 div#menu{ position:absolute;top:00px;right:10px; }
 
 div#casesummary{position:absolute; top:10px}
@@ -70,7 +74,8 @@ div#new{position:absolute; top:170px;}
 div#email{position:absolute; top:180px;}
 
 div.logout{position: absolute;top:110px;right:30px; }
-div.subscript{position:absolute;top:135px;right:10px;font:  11px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:purple;}
+div.subscript{position:absolute;top:135px;right:10px;font:  11px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:red;}
+div.js{position:absolute;top: 205px;right:10px;font:  11px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:red;}
 div#casesummarytitle{position:absolute; top:145px;}
 div#open24title{position:absolute; top:395px;}
 div#open24titleE{position:absolute; top:510px;border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
@@ -127,3 +132,15 @@ input#button1{position:absolute; top: 180px;}
 div#search{font:  16px/13px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0;}
 
 div#emailsform{position: absolute; top:100px;}
+
+p.count{
+   position: relative;
+   top:20px;
+}
+p.countIssues{
+   position: absolute;
+   top:220px;
+   
+   right:10px;
+
+}

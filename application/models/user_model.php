@@ -145,6 +145,30 @@ class User_model extends CI_Model{
 		}
 
 	}
+	function openCount(){
+		$query =$this->db->query(" select count(Case_no) as \"OPEN\" from gdcp.release_status_report_V where Status = 'Open'");
+		if($query){
+			return $query->result();
+		}else
+		return false;
+	}
+	function closedCount(){
+		$query =$this->db->query(" select count(Case_no) as \"CLOSED\" from gdcp.release_status_report_V where Status = 'Closed'");
+		if($query){
+			return $query->result();
+		}else
+		return false;
+	}
+	function othersCount(){
+		$query =$this->db->query(" select count(Case_no) as \"OTHERS\" from gdcp.release_status_report_V where Status <> 'Closed' and status <> 'Open'");
+		if($query){
+			return $query->result();
+		}else
+		return false;
+	}
+
+
+
 
 	function statusreport(){
 		$query =$this->db->query("SELECT 
@@ -242,8 +266,8 @@ class User_model extends CI_Model{
 								ANALYST as \"Analyst\",
 								STATUS as \"Status\",
 								RELEASE_RELATED as \"ReleaseRelated\",
-								'<div style=\"width:300px; word-break:break-all;\"><pre style =\"font-family:calibri; font-size:12px;\">'||RECOMMENDATIONS||'</pre></div>' as \"Recommendations\",
-								'<div style=\"width:300px; word-break:break-all;\"><pre style =\"font-family:calibri; font-size:12px;\">'||SUMMARY||'</pre></div>'  as \"Summary\",
+								'<div style=\"width:300px; \"><pre style =\"font-family:calibri; font-size:12px;\">'||RECOMMENDATIONS||'</pre></div>' as \"Recommendations\",
+								'<div style=\"width:300px; \"><pre style =\"font-family:calibri; font-size:12px;\">'||SUMMARY||'</pre></div>'  as \"Summary\",
 								CASE_PBI as \"CasePBI\"
 								from gdcp.RELEASE_STATUS_REPORT
 								where SUBSTR(upper(status),1,3) IN ('CLO', 'RES')
@@ -295,39 +319,69 @@ class User_model extends CI_Model{
 
 	}
 	function search(){
-		function remove_characters($str)
-		{
-			$find = array("+","*");
-			$replace = array("%","%");
+		function remove_characters($str){
+			$find = array("+","*","%");
+			$replace = array("%","%","%");
 			return    str_replace($find, $replace, $str);
 		}
-
 		$searchString = remove_characters($this->input->get('search'));
 		$list  = $this->input->get('list');
-
-		$search = $this->db->query("SELECT ID, 
-
-							ISSUE_REPORTED_DATE as \"IssueReportedDate\",
-							CASE_NO as \"CaseNo\",
-
-							APPLICATION as  \"Application\",
-							PRIORITY as \"Priority\",
-							DB_FE as \"DBFE\",
-							DB as \"Database\",
-							SUPPORTED_DB as \"SupportedDB\",
-							ANALYST as \"Analyst\",
-							STATUS as \"Status\",
-							RELEASE_RELATED as \"ReleaseRelated\",
-							'<div  style=\"width:300px;white-space:pre-line; word-break:hyphenate;\">'||RECOMMENDATIONS||'</div>' as \"Recommendations\",
-							'<div  style=\"width:300px;white-space:pre-line; word-break:hyphenate;\">'||SUMMARY||'</div>'  as \"Summary\",
-							CASE_PBI as \"CasePBI\"
-										
-										 from  gdcp.RELEASE_STATUS_REPORT_V where ".$list." like '".$searchString."' order by ".$list );
-		if($search)
-			return $search;
+		
+		$collumns =  'ID, 
+							ISSUE_REPORTED_DATE as "IssueReportedDate",
+							CASE_NO as "CaseNo",
+							APPLICATION as  "Application",
+							PRIORITY as "Priority",
+							DB_FE as "DBFE",
+							DB as "Database",
+							SUPPORTED_DB as "SupportedDB",
+							ANALYST as "Analyst",
+							STATUS as "Status",
+							RELEASE_RELATED as "ReleaseRelated",
+							\'<div  style="width:300px;white-space:pre-line; word-break:hyphenate;">\'||RECOMMENDATIONS||\'</div>\' as "Recommendations",
+							\'<div  style="width:300px;white-space:pre-line; word-break:hyphenate;">\'||SUMMARY||\'</div>\'  as "Summary",
+							CASE_PBI as "CasePBI" from  gdcp.RELEASE_STATUS_REPORT_V where';
+			
+		$search = $this->db->query("SELECT ".$collumns." ".$list." like '".$searchString."' order by ".$list );
+		
+		if($search){
+			if ($search->num_rows() < 1){
+				$search = $this->db->query("SELECT ".$collumns." lower(".$list.") like '".$searchString."' order by ".$list );	
+				if($search && $search->num_rows() < 1){
+					$search = $this->db->query("SELECT ".$collumns." upper(".$list.") like '".$searchString."' order by ".$list );
+					if($search && $search->num_rows() > 0)	
+						return $search->result();
+					elseif($search->num_rows() < 1){
+						$search = $this->db->query("SELECT ".$collumns." lower(".$list.") like '".$searchString."%' order by ".$list );
+						
+						if($search && $search->num_rows() > 0)
+							return $search->result();
+						
+						elseif($search->num_rows() < 1){
+							$search = $this->db->query("SELECT ".$collumns." lower(".$list.") like '%".$searchString."%' order by ".$list );
+							if($search && $search->num_rows() > 0)
+								return $search->result();
+							else
+								return false;
+						}
+						else
+							return false;
+					}
+					else
+						return false;
+				}elseif($search && $search->num_rows() > 0)
+					return $search->result();
+				else
+					return false;
+			}
+			elseif($search && $search->num_rows() > 0)
+				return $search->result();
+			else
+				return false;
+		}
+		
 		else
 			return false;
-
 	}
 	
 	function add(){
@@ -397,7 +451,7 @@ class User_model extends CI_Model{
 			return false;
 	}
 
-//	function view($id){
+//	Audit...
 	function view($id){
 		$que = $this->db->query("select ID from gdcp.RELEASE_STATUS_REPORT where case_no like '".$id."%' ");
 		 $que = $que->result_array();

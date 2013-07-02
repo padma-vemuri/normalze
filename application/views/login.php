@@ -1,6 +1,9 @@
 <div id= "formdiv">
 	<?php 
 		error_reporting(0);
+		echo $this->session->userdata['error'];
+        $this->session->unset_userdata('error');
+		
 		$formHTML = array(
 					'id' => 'form',
 					//'action' => 'login/validate'
@@ -10,8 +13,7 @@
 		
 		echo form_open('login/validate',$formHTML);
 
-        echo $this->session->userdata['error'];
-        $this->session->unset_userdata('error');
+        
 		echo "<h1> Login </h1><br/>";
 		
 		echo form_label('Username', 'username',$att);
@@ -19,6 +21,7 @@
 				'name' =>'username',
 				'id'   =>'userid',
 				'class' =>'signin',
+				'Required' =>'Required',
 				'placeholder'=>'ccid',
 				'maxlength' => '18',
 				'size' => '24'
@@ -36,6 +39,7 @@
 				'name' =>'password',
 				'id'   =>'password',
 				'class' =>'signin',
+				'Required' =>'Required',
 				'placeholder'=>'password',
 				'maxlength' => '18',
 				'size' => '24'
