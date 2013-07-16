@@ -317,7 +317,7 @@
                      redirect('home/update');
                 }
                else{
-                    $this->session->set_userdata('errorlog','<p class="errorlog">There was an ERROR. Try again.</p>');
+                    $this->session->set_userdata('errorlog','<p class="errorlog">Case Id was already used. or Unable to Create.</p>'.$mes);
                     redirect('home/create');
                }
           }

@@ -30,7 +30,7 @@
 	<ul class ="menuicon" style="display: inline-block;">
 			<a class="menu"href="/<?php echo "test/normalize/index.php/home/statusreports"?>">
 				<li align ="center"> <img src="<?php echo base_url();?>/assets/images/repot.png" /></li>
-				<li>Status Report</li>
+				<li>Reports</li>
 			</a>
 	</ul>
 	<ul class ="menuicon" style="display: inline-block;">

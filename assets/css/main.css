@@ -20,16 +20,12 @@
             }
 
 
-            tr.hover:hover{
-                background-color:rgba(173,216,230,0.5);
-                
-                color:black;
-                border-spacing: 0px;
-                transition:600ms;
-                cursor: text;
-                border-radius: 2px;
-
+            @-moz-document url-prefix() {
+                tr.hover:hover{
+                    background-color:rgba(173,216,230,0.5);
+                }
             }
+    
 
 
             table.curvedEdges { border-spacing: 0px; border:3px solid RoyalBlue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}

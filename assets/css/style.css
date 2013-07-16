@@ -32,7 +32,7 @@ li{text-decoration:none;list-style-type: none;text-align: center;margin-left: -3
 button#update {  margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; text-transform:uppercase;color:#333;cursor:pointer;}
 
 pre{font:  12px/12px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;}
-pre#td{ font-family: calibri; font-size: 12px; line-height: 13px;
+pre#td{ font-family: calibri; font-size: 12px; line-height: 13px;word-break:break-word;
 
 }
 div.ui-datepicker{

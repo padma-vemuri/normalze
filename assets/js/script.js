@@ -6,7 +6,8 @@ $(function(){
 			$('#loginjs').html('Your username can not be less than 6 characters');
 		else if($(this).val().length > 6 && $(this).val().length < 13)
 			$('#loginjs').html('');
-});
+});});
+
 	$('#password').bind('input propertychange',function(){
 		if($(this).val().length < 8)
 			$('#passwordjs').html('Your password can not be less than 8 characters');
@@ -29,7 +30,7 @@ $(function(){
 
 
 
-});
+
 
 
 $(function() {

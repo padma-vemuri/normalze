@@ -1,7 +1,7 @@
 	<div id="errordiv">
 		<?php
-		echo $this->session->userdata['error'];
-    	$this->session->unset_userdata('error'); 
+		echo $this->session->userdata['errorlog'];
+    	$this->session->unset_userdata('errorlog'); 
     	?>
 	</div>
 

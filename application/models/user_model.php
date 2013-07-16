@@ -95,10 +95,13 @@ class User_model extends CI_Model{
 	}
 	
 	function open24(){
-		$query =$this->db->query("SELECT case_no as \"Issue Number\", project as\"Project\", application as \"Application\", status as \"Status\"
-								from gdcp.release_status_report_v
-								where trunc(sysdate) - trunc(issue_reported_date) <= 1
-								and case_pbi = 'C'");
+		$query =$this->db->query("SELECT 
+									'<div style=\"width:90px;\">'||case_no||'</div>' as \"Issue Number\", 
+									project as\"Project\", 
+									'<div style=\"width:200px; word-break:hyphenate;\">'||APPLICATION||'</div>' as  \"Application\",
+									status as \"Status\"
+										from gdcp.release_status_report_v
+										where trunc(sysdate) - trunc(issue_reported_date) <= 1 and case_pbi = 'C'");
 		if($query){
 			return $query;
 		}else{
@@ -107,10 +110,13 @@ class User_model extends CI_Model{
 	}
 
 	function cases24(){
-		$query =$this->db->query("SELECT case_no as \"Issue Number\", project as\"Project\", application as \"Application\", status as \"Status\"
-								from gdcp.release_status_report_v
- 								where (trunc(sysdate) - trunc(last_update_date)) <= 1
-								and case_pbi = 'C'");
+		$query =$this->db->query("SELECT 
+									'<div style=\"width:90px;\">'||case_no||'</div>' as \"Issue Number\", 
+									project as\"Project\", 
+									'<div style=\"width:200px; word-break:hyphenate;\">'||APPLICATION||'</div>' as  \"Application\",
+									status as \"Status\"
+											from gdcp.release_status_report_v
+ 										where (trunc(sysdate) - trunc(last_update_date)) <= 1 and case_pbi = 'C'");
 		if($query){
 			return $query;
 		}else{
@@ -121,20 +127,19 @@ class User_model extends CI_Model{
 	function update(){
 		$query =$this->db->query("SELECT ID, 
 
-							ISSUE_REPORTED_DATE as \"IssueReportedDate\",
+							'<div style=\"width:60px;\">'||ISSUE_REPORTED_DATE||'</div>' as \"IssueReportedDate\",
 							CASE_NO as \"CaseNo\",
 
-							'<div style=\"width:230px; word-break:hyphenate;\">'||APPLICATION||'</div>' as  \"Application\",
-							PRIORITY as \"Priority\",
+							'<div style=\"width:160px; word-break:hyphenate;\">'||APPLICATION||'</div>' as  \"Application\",
+							'<div style=\"width:180px;white-space:pre-line; word-break:hyphenate;\">'||PRIORITY||'</div>' as \"Priority\",
 							DB_FE as \"DBFE\",
 							DB as \"Database\",
 							SUPPORTED_DB as \"SupportedDB\",
 							ANALYST as \"Analyst\",
 							STATUS as \"Status\",
 							RELEASE_RELATED as \"ReleaseRelated\",
-							'<div style=\"width:300px;white-space:pre-line; word-break:hyphenate;\">'||RECOMMENDATIONS||'</div>' as \"Recommendations\",
-							'<div style=\"width:300px; word-break:hyphenate;white-space:pre-line;\">'||SUMMARY||'</div>'  as \"Summary\",
-							CASE_PBI as \"CasePBI\"
+							'<div style=\"width:235px; word-break:hyphenate;white-space:pre-line;\">'||SUMMARY||'</div>'  as \"Summary\",
+							'<div style=\"width:235px;white-space:pre-line; word-break:hyphenate;\">'||RECOMMENDATIONS||'</div>' as \"Recommendations\",CASE_PBI as \"CasePBI\"
 							from gdcp.RELEASE_STATUS_REPORT_V
 							order by issue_reported_date desc,CASE_PBI asc, release_related desc 
 							");
@@ -172,7 +177,7 @@ class User_model extends CI_Model{
 
 	function statusreport(){
 		$query =$this->db->query("SELECT 
-										'<div align=\"center\" style=\"width:90px\">'||ISSUE_REPORTED_DATE||'</div>'  as \"Issue Reported Date\",
+										'<div align=\"left\" style=\"width:70px\">'||ISSUE_REPORTED_DATE||'</div>'  as \"Date\",
 										'<div style=\"width:100px\">'||CASE_NO||'</div>' as \"Issue Number\",
 										'<div align=\"left\"style=\"width:100px\">'||DECODE(CASE_PBI,'C','Support','Performance')||'</div>' as \"Reported By\",
 										'<div align=\"left\"style=\"width:100px\">'||GBP||'</div>' as \"GBP\",
@@ -198,11 +203,11 @@ class User_model extends CI_Model{
 	}
 	function perfapp(){
 		$query =$this->db->query("SELECT 
-											'<div align=\"left\" style=\"white-space:nowrap;width:130px\">'||ISSUE_REPORTED_DATE||'</div>'  as \"Issue Reported Date\",
+											'<div align=\"left\" style=\"white-space:nowrap;width:70px\">'||ISSUE_REPORTED_DATE||'</div>'  as \"Date\",
 											'<div align=\"left\" style =\" white-space:nowrap;width:280px;\">'||project||'</div>' as \"Project\",	
 											'<div style=\"width:100px\">'||CASE_NO||'</div>'  as \"Issue Number\",
 											'<div align=\"left\" style=\"width:100px;\">'||GBP||'</div>' as \"GBP\",
-											'<pre><div style=\"width:160px; font-family:calibri;\">'||priority||'</div></pre>'  as \"Priority\",
+											'<div style=\"width:160px;white-space:pre-line; word-break:hyphenate;\">'||PRIORITY||'</div>' as \"Priority\",
 											'<div align=\"left\"style=\"width:140px; white-space:pre-wrap;\">'||APPLICATION||'</div>' as \"Application\",
 											'<div align=\"left\"style=\"width:160px\">'||STATUS||'</div>'as \"Status\",
 											'<div align=\"center\">'||RELEASE_RELATED ||'</div>'as \"Release Related\",
@@ -230,7 +235,7 @@ class User_model extends CI_Model{
 
 	function closed(){
 		$query =$this->db->query("SELECT 
-								'<div align=\"left\" style=\"width:90px\">'||ISSUE_REPORTED_DATE||'</div>'  as \" Issue Reported Date\",
+								'<div align=\"left\" style=\"width:70px\">'||ISSUE_REPORTED_DATE||'</div>'  as \"Date\",
 								'<div style=\"width:100px\">'||CASE_NO||'</div>'  as \"Issue Number\",
 								'<div align=\"left\" style=\"width:100px;\">'||GBP||'</div>' as \"GBP\",
 								'<div align=\"left\"style=\"width:200px; white-space:pre-wrap;\">'||APPLICATION||'</div>' as \"Application\",
@@ -241,8 +246,8 @@ class User_model extends CI_Model{
 								'<div align=\"left\" style=\"width:90px\">'||ANALYST||'</div>' as \"Analyst\",
 								'<div align=\"left\"style=\"width:160px\">'||STATUS||'</div>'as \"Status\",
 								'<div align=\"center\">'||RELEASE_RELATED||'</div>' as \"Release Related\",
-								'<div style=\"width:300px;white-space:pre-line; word-break:hyphenate;\">'|| RECOMMENDATIONS||'</div>' as \"Recommendations\",
 								'<div style=\"width:300px;white-space:pre-line; word-break:hyphenate;\">'|| SUMMARY||'</div>' as \"Summary\",
+								'<div style=\"width:300px;white-space:pre-line; word-break:hyphenate;\">'|| RECOMMENDATIONS||'</div>' as \"Recommendations\",
 								'<div align=\"center\">'||CASE_PBI||'</div>' as \"Case/PBI\"
 								 from   gdcp.RELEASE_STATUS_REPORT 
 								where SUBSTR(upper(status),1,3) IN ('CLO', 'RES')
@@ -266,8 +271,8 @@ class User_model extends CI_Model{
 								ANALYST as \"Analyst\",
 								STATUS as \"Status\",
 								RELEASE_RELATED as \"ReleaseRelated\",
-								'<div style=\"width:300px; \"><pre style =\"font-family:calibri; font-size:12px;\">'||RECOMMENDATIONS||'</pre></div>' as \"Recommendations\",
 								'<div style=\"width:300px; \"><pre style =\"font-family:calibri; font-size:12px;\">'||SUMMARY||'</pre></div>'  as \"Summary\",
+								'<div style=\"width:300px; \"><pre style =\"font-family:calibri; font-size:12px;\">'||RECOMMENDATIONS||'</pre></div>' as \"Recommendations\",
 								CASE_PBI as \"CasePBI\"
 								from gdcp.RELEASE_STATUS_REPORT
 								where SUBSTR(upper(status),1,3) IN ('CLO', 'RES')
@@ -328,7 +333,7 @@ class User_model extends CI_Model{
 		$list  = $this->input->get('list');
 		
 		$collumns =  'ID, 
-							ISSUE_REPORTED_DATE as "IssueReportedDate",
+							\'<div   style="width:60px;">\'||ISSUE_REPORTED_DATE||\'</div>\'  as "IssueReportedDate",
 							CASE_NO as "CaseNo",
 							APPLICATION as  "Application",
 							PRIORITY as "Priority",
@@ -338,8 +343,8 @@ class User_model extends CI_Model{
 							ANALYST as "Analyst",
 							STATUS as "Status",
 							RELEASE_RELATED as "ReleaseRelated",
-							\'<div  style="width:300px;white-space:pre-line; word-break:hyphenate;">\'||RECOMMENDATIONS||\'</div>\' as "Recommendations",
 							\'<div  style="width:300px;white-space:pre-line; word-break:hyphenate;">\'||SUMMARY||\'</div>\'  as "Summary",
+							\'<div  style="width:300px;white-space:pre-line; word-break:hyphenate;">\'||RECOMMENDATIONS||\'</div>\' as "Recommendations",
 							CASE_PBI as "CasePBI" from  gdcp.RELEASE_STATUS_REPORT_V where';
 			
 		$search = $this->db->query("SELECT ".$collumns." ".$list." like '".$searchString."' order by ".$list );
@@ -397,32 +402,40 @@ class User_model extends CI_Model{
 			else
 				$date1 = '';
 
-			$addform  = $this->db->query("call gdcp.perf_norm_pkg.ins_upd_report('".$this->input->post('caseid')."',
-			                                '".$date1."',
-			                                '".$no_spaces_case_num."',
-			                                '".$this->input->post('gbplist')."',
-			                                '".$this->input->post('prolist')."',
-			                               	'".$this->input->post('application')."',
-											'".$this->input->post('priority')."',
-											'".$this->input->post('dbfe')."',
-											'".$this->input->post('db')."',
-			                                '".$this->input->post('supdb')."',
-											'".$this->input->post('anallist')."',
-											'".$this->input->post('status')."',
-											'".$this->input->post('relrelated')."',
-											'".$this->input->post('recommendations')."',
-											'".$this->input->post('summary')."',
-											'',
-			                                '',
-			                                '".$this->session->userdata['username']."',
-			                                '".$this->session->userdata['username']."'
-			                                )");
-			if($addform){
-				$message = 'Case/Issue has been Created/Updated.';
+			$checkCaseNumber = $this->db->query('select * from gdcp.release_status_report where case_no =\''.$no_spaces_case_num.'\'');
+			$checkCaseNumber = $checkCaseNumber->num_rows();
+			if($checkCaseNumber > 1 && $this->input->post('caseid') == ''){
+				$message = 'Case ID/Issue has already used ';
 				return $message;
 			}
-			else 
-				return false;
+			elseif($checkCaseNumber > 0 && $this->input->post('caseid') != '' || $checkCaseNumber == 0    ){
+					$addform  = $this->db->query("call gdcp.perf_norm_pkg.ins_upd_report('".$this->input->post('caseid')."',
+					                                '".$date1."',
+					                                '".$no_spaces_case_num."',
+					                                '".$this->input->post('gbplist')."',
+					                                '".$this->input->post('prolist')."',
+					                               	'".$this->input->post('application')."',
+													'".$this->input->post('priority')."',
+													'".$this->input->post('dbfe')."',
+													'".$this->input->post('db')."',
+					                                '".$this->input->post('supdb')."',
+													'".$this->input->post('anallist')."',
+													'".$this->input->post('status')."',
+													'".$this->input->post('relrelated')."',
+													'".$this->input->post('recommendations')."',
+													'".$this->input->post('summary')."',
+													'',
+					                                '',
+					                                '".$this->session->userdata['username']."',
+					                                '".$this->session->userdata['username']."'
+					                                )");
+					if($addform){
+						$message = 'Case/Issue has been Created/Updated.';
+						return $message;
+					}
+					else 
+						return false;
+				}
 		}
 		elseif($this->input->post('delete')){
 			$query = $this->db->query("delete from gdcp.release_status_report where case_no like '".$no_spaces_case_num."'");
@@ -461,8 +474,8 @@ class User_model extends CI_Model{
 
 		 $query = $this->db->query("select ISSUE_REPORTED_DATE as \"Reported Date\",
 										  CASE_NO as \"Issue Number\",
-										  APPLICATION as \"Application\",
-										  PRIORITY as \"Priority\",
+										  '<div style=\"width:160px; word-break:break-all; white-space:pre-line;\">'||APPLICATION||'</div>' as \"Application\",
+										  '<div style=\"width:160px; word-break:break-all; white-space:pre-line;\">'||PRIORITY||'</div>' as \"Priority\",
 										  '<div align=\"center\">'||DB_FE||'</div>'   as \"DB/FE\",
 
 										  DB as \"Database\",
@@ -470,9 +483,8 @@ class User_model extends CI_Model{
 										  ANALYST as \"Analyst\",
 										  STATUS as \"Status\",
 										   '<div align=\"center\">'||RELEASE_RELATED||'</div>'   as \"ReleaseRelated\",
-										  '<div style=\"width:300px; word-break:break-all; white-space:pre-line;\">'||recommendations||'</div>' as \"Recommendations\",
 										  '<div style=\"width:300px; word-break:break-all; white-space:pre-line;\">'||summary||'</div>' as \"Summary\",
-										  
+										  '<div style=\"width:300px; word-break:break-all; white-space:pre-line;\">'||recommendations||'</div>' as \"Recommendations\",
 										  LAST_UPDATE_DATE  as \"Last Updated Date\",
 										  CREATED_BY as \"Created By\",
 										  LAST_UPDATED_BY as \"Last Updated By\",
@@ -496,8 +508,8 @@ class User_model extends CI_Model{
 										'<div align=\"left\"style=\"width:200px; white-space:pre-wrap;\">'||APPLICATION||'</div>' as \"Application\",
 										'<div align=\"left\"style=\"width:200px\">'||STATUS||'</div>'as \"Status\",
 										'<div align=\"center\">'||RELEASE_RELATED||'</div>' as \"Release Related\",
-										'<div style=\"width:300px\"><pre>'|| SUMMARY||'</pre></div>' as \"Summary\",
-										'<div style=\"width:300px\"><pre>'|| RECOMMENDATIONS||'</pre></div>' as \"Recommendations\"
+										'<div style=\"width:300px\"><pre>'|| RECOMMENDATIONS||'</pre></div>' as \"Recommendations\",
+										'<div style=\"width:300px\"><pre>'|| SUMMARY||'</pre></div>' as \"Summary\"
 										 from   gdcp.RELEASE_STATUS_REPORT_V  
 										where case_pbi IN ('C','P')
 										and SUBSTR(upper(status),1,3) NOT IN ('CLO', 'RES') and  case_no like 'INC%'
@@ -521,8 +533,8 @@ class User_model extends CI_Model{
 										'<div align=\"left\"style=\"width:200px; white-space:pre-wrap;\">'||APPLICATION||'</div>' as \"Application\",
 										'<div align=\"left\"style=\"width:200px\">'||STATUS||'</div>'as \"Status\",
 										'<div align=\"center\">'||RELEASE_RELATED||'</div>' as \"Release Related\",
-										'<div style=\"width:300px\">'|| SUMMARY||'</div>' as \"Summary\",
-										'<div style=\"width:300px\">'|| RECOMMENDATIONS||'</div>' as \"Recommendations\"
+										'<div style=\"width:300px\">'|| RECOMMENDATIONS||'</div>' as \"Recommendations\",
+										'<div style=\"width:300px\">'|| SUMMARY||'</div>' as \"Summary\"
 										 from   gdcp.RELEASE_STATUS_REPORT_V  
 										where case_pbi IN ('C','P')
 										and SUBSTR(upper(status),1,3) NOT IN ('CLO', 'RES') and  case_no like 'PBI%'
