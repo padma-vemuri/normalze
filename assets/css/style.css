@@ -48,7 +48,9 @@ div.ui-datepicker{
 #userid{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 #password{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 #conpassword{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
-
+#firstname {-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+#lastname{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+#ccid{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 h1#reset{font:  20px/22px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0;}
 h1{font:  30px/42px 'OpenSansLight', Arial, sans-serif;letter-spacing: 1;}
 h1.logo{font:  13px/12px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 1px;color: transparent;
@@ -64,7 +66,7 @@ li.passwordReset {text-align: left; margin-left: 10px;}
 div#menu{ position:absolute;top:00px;right:10px; }
 
 div#casesummary{position:absolute; top:10px}
-div#cases24{position:absolute; top:10px;left:0px;}
+div#cases24{position:absolute; top:10px;left:0px;word-wrap:break-word;}
 div#open24{position:relative; top:100px;}
 
 div#footer{position: relative;margin-top: -100px;height: 150px;clear:both;}
@@ -79,7 +81,7 @@ div.js{position:absolute;top: 205px;right:10px;font:  11px/11px 'OpenSansRegular
 div#casesummarytitle{position:absolute; top:145px;}
 div#open24title{position:absolute; top:395px;}
 div#open24titleE{position:absolute; top:510px;border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
-div#cases24title{position:absolute; top:145px; left: 400px;}
+div#cases24title{position:absolute; top:145px; left: 520px;}
 div#cases24titleE{position:absolute; top:195px; left: 700px; border:solid 4px; padding: 15px 15px 15px 15px; border-color: royalblue;-webkit-border-radius:9px;-moz-border-radius:9px;-ms-border-radius:9px;-o-border-radius:9px;border-radius:9px;}
 
 div.jqoutput{position:absolute;float:right;font:  11px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:red; }
@@ -109,7 +111,7 @@ div#addform{position: absolute; top: 90px;}
 div#error{font:  14px/16px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0px;position: absolute;top:200px;}
 
 
-#createform{ -webkit-border-radius: 5px; -moz-border-radius: 5px;line-height: 1; border-radius: 5px;font-size:10px;font-family: Arial; padding : 30px 40px 0px 30px;background-color:rgba(65,105,225,0.1); ;color: black;clear:both; float: right; position: absolute; top:-10px; width:650px; }
+#createform{ -webkit-border-radius: 5px; -moz-border-radius: 5px;line-height: 1; border-radius: 5px;font-size:10px;font-family: Arial; padding : 30px 40px 0px 30px;background-color:rgba(65,105,225,0.1); ;color: black;clear:both; float: right; position: absolute; top:-80px; width:650px; }
 #createform {
    -moz-box-shadow: inset 0 0 30px 3px rgba(69, 113, 218,0.5);
    -webkit-box-shadow: inset 0 0 30px 3px rgba(69, 113, 218,0.5);

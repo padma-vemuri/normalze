@@ -115,6 +115,17 @@ class Login extends CI_Controller {
 		$this->load->view('reset');
 		//$this->load->view('footer');
 	}
+
+	function signup(){
+
+		$this->load->view('header');
+		$this->load->view('signup');
+	}
+	function newuser(){
+		$this->load->view('header');
+		
+		$this->load->view('newuser');
+	}
 }
 
 

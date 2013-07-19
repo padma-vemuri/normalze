@@ -24,18 +24,18 @@
 
                     'row_start'           => '<tr class="hover">',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td class="standard" style ="padding-left:17px;">',
+                    'cell_start'          => '<td class="standard" style ="padding-left:17px;word-wrap:break-word;">',
                     'cell_end'            => '</td>',
 
                     'row_alt_start'       => '<tr class="hover">',
                     'row_alt_end'         => '</tr>',
-                    'cell_alt_start'      => '<td class="standard" style ="padding-left:17px;">',
+                    'cell_alt_start'      => '<td class="standard" style ="padding-left:17px;word-wrap:break-word;">',
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
                );
 			$tmp2 = array (
-                    'table_open'          => '<div id="open24"><table  class="curvedEdges" style = "z-index:2; position:relative; top:10px;">',
+                    'table_open'          => '<div id="open24"><table  class="curvedEdges" style = "z-index:2;table-layout:fixed; position:relative; top:10px;">',
 
                     'heading_row_start'   => '<tr>',
                     'heading_row_end'     => '</tr>',
@@ -44,32 +44,32 @@
 
                     'row_start'           => '<tr class="hover">',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td class="standard">',
+                    'cell_start'          => '<td class="standard" style ="word-break:break-word;">',
                     'cell_end'            => '</td>',
 
                     'row_alt_start'       => '<tr class="hover">',
                     'row_alt_end'         => '</tr>',
-                    'cell_alt_start'      => '<td class="standard" >',
+                    'cell_alt_start'      => '<td class="standard" style ="word-break: break-word;">',
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
                );
 			$tmp3 = array (
-                    'table_open'          => '<div id="cases24"><table  class="curvedEdges" style = "z-index:3; position:relative;left:100px; width:auto;">',
+                    'table_open'          => '<div id="cases24"><table  class="curvedEdges" style = "z-index:3;table-layout:fixed; position:relative;left:100px;">',
 
                     'heading_row_start'   => '<tr>',
                     'heading_row_end'     => '</tr>',
-                    'heading_cell_start'  => '<th style="background-color:lightblue;;white-space:nowrap;">',
+                    'heading_cell_start'  => '<th style="background-color:lightblue;white-space:nowrap;">',
                     'heading_cell_end'    => '</th>',
 
-                    'row_start'           => '<tr class = "hover">',
+                    'row_start'           => '<tr class = "hover"  >',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td class="standard">',
+                    'cell_start'          => '<td class="standard" style ="word-break:break-word;" >',
                     'cell_end'            => '</td>',
 
                     'row_alt_start'       => '<tr class = "hover" >',
                     'row_alt_end'         => '</tr>',
-                    'cell_alt_start'      => '<td class="standard">',
+                    'cell_alt_start'      => '<td class="standard" style ="word-break:break-word;">',
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
@@ -218,7 +218,7 @@
 			$query = $this->user_model->statusreport();
 			$this->load->library('table');
 			$tmpl = array (
-                    'table_open'          => '<div id="issues" style ="z-index:1; position:relative; top:200px;"><table style = "" class="curvedEdges">',
+                    'table_open'          => '<div id="issues" style ="z-index:1; position:relative; top:200px;"><table style = "table-layout:fixed;" class="curvedEdges">',
 
                     'heading_row_start'   => '<tr>',
                     'heading_row_end'     => '</tr>',
@@ -227,12 +227,12 @@
 
                     'row_start'           => '<tr class="hover">',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td class="standard"style="">',
+                    'cell_start'          => '<td class="standard"style="word-break:break-word">',
                     'cell_end'            => '</td>',
 
                     'row_alt_start'       => '<tr class="hover">',
                     'row_alt_end'         => '</tr>',
-                    'cell_alt_start'      => '<td class="standard"style="">',
+                    'cell_alt_start'      => '<td class="standard"style="word-break:break-word">',
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
@@ -275,10 +275,10 @@
 
                     'row_start'           => '<tr class="hover">',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td class="standard">',
+                    'cell_start'          => '<td class="standard" style="word-break:break-word">',
                     'cell_end'            => '</td>',
 
-                    'row_alt_start'       => '<tr class="hover">',
+                    'row_alt_start'       => '<tr class="hover" style="word-break:break-word">',
                     'row_alt_end'         => '</tr>',
                     'cell_alt_start'      => '<td class="standard">',
                     'cell_alt_end'        => '</td>',
@@ -336,41 +336,41 @@
                $this->load->model('user_model');
                $this->load->library('table');
                $tmp2 = array (
-                              'table_open'          => '<div id="closed" style ="z-index:2; position:relative; top:200px;"><table style = "font-size:12px;font-family:calibri;line-height:14px;width:200%;white-space:nowrap; overflow:auto;border:1px solid">',
+                              'table_open'          => '<table style = "font-size:12px;font-family:calibri;width:100%;table-layout:fixed;white-space:nowrap; border:1px solid">',
 
                               'heading_row_start'   => '<tr>',
                               'heading_row_end'     => '</tr>',
                               'heading_cell_start'  => '<th style="border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;">',
                               'heading_cell_end'    => '</th>',
 
-                              'row_start'           => '<tr style="border-left:1px dotted;">',
+                              'row_start'           => '<tr style="border-left:1px">',
                               'row_end'             => '</tr>',
-                              'cell_start'          => '<td style=" width:auto;padding:5px;border:1px solid; align:left;vertical-align:top;">',
+                              'cell_start'          => '<td style="padding:5px;border:1px solid; align:left;vertical-align:top;">',
                               'cell_end'            => '</td>',
 
-                              'row_alt_start'       => '<tr style="border-left:1px dotted;">',
+                              'row_alt_start'       => '<tr style="border-left:1px">',
                               'row_alt_end'         => '</tr>',
                               'cell_alt_start'      => '<td style="padding:5px;border:1px solid;align:left;vertical-align:top;">',
                               'cell_alt_end'        => '</td>',
 
-                              'table_close'         => '</table></div>'
+                              'table_close'         => '</table>'
                          );
                $tmp1 = array (
                               'table_open'          => '<table style = "font-size:12px;font-family:calibri;line-height:14px;width:450px;white-space:nowrap; overflow:auto;border:1px solid">',
 
                               'heading_row_start'   => '<tr>',
                               'heading_row_end'     => '</tr>',
-                              'heading_cell_start'  => '<th style="border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;">',
+                              'heading_cell_start'  => '<th style="border-collapse:collapse;padding-left:8px; border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;">',
                               'heading_cell_end'    => '</th>',
 
                               'row_start'           => '<tr style="border-left:1px dotted;">',
                               'row_end'             => '</tr>',
-                              'cell_start'          => '<td style=" width:auto;border:1px solid;padding:5px; align:left;vertical-align:top;">',
+                              'cell_start'          => '<td style=" width:auto;border:1px solid;padding-left:13px; align:center;vertical-align:top;">',
                               'cell_end'            => '</td>',
 
                               'row_alt_start'       => '<tr style="border-left:1px dotted;">',
                               'row_alt_end'         => '</tr>',
-                              'cell_alt_start'      => '<td style="padding:5px;border:1px solid;padding:5px;align:left;vertical-align:top;">',
+                              'cell_alt_start'      => '<td style="padding:5px;border:1px solid;padding-left:13px; align:center;vertical-align:top;">',
                               'cell_alt_end'        => '</td>',
 
                               'table_close'         => '</table>'
@@ -385,7 +385,7 @@
                     if($this->input->post('casesummary')){
 
                          $query = $this->user_model->casesummary();
-                         $casesummary = '<b>Case Summary </b> <br/>';
+                         $casesummary = '<b>Issue Summary </b> <br/>';
                          $this->table->set_template($tmp1);
                          $this->table->set_empty("0");
                          //$this->table->set_caption('Q1FY14-Issues Summary');
@@ -396,23 +396,78 @@
                     }
                     if($this->input->post('statusreport')){
      
-                         $query = $this->user_model->perfapp();
+                        /* $query = $this->user_model->perfapp();
                          $this->table->set_template($tmp2);
                          $perfapp = '<b>Issues Reported by Application/Performance Team(Extended Version)  </b>'.$query->num_rows().' Records.<br/>';
                          $perfapp .= $this->table->generate($query);
-                         //$perfapp .='<br/>'.$query->num_rows().'Records.';
+                         //$perfapp .='<br/>'.$query->num_rows().'Records.'; */
+                    
 
-                         $query = $this->user_model->estatusreportinc();
-                         $this->table->set_template($tmp2);
-                         $estatusreportinc = '<b>Issues Reported by  Support Teams  </b>    '.$query->num_rows().' Records.<br/>';
-                         $estatusreportinc .= $this->table->generate($query);
-                        // $estatusreportinc .= '<br/>'.$query->num_rows().'Records.';
+                         $query = $this->user_model->estatusreportinc(); 
+                         $count = $query->num_rows();
+                         $query = $query->result();
 
-                         $query = $this->user_model->estatusreportpbi();
-                         $this->table->set_template($tmp2);
-                         $estatusreportpbi = '<b>Issues Reported by  Performance Team   </b>  '.$query->num_rows().' Records.<br/>';
-                         $estatusreportpbi .= $this->table->generate($query);
-                         //$estatusreportpbi .='<br/>'.$query->num_rows().'Records';
+                         $estatusreportinc = '<b style=\"font-family:calibri;\">Issues Reported by  Support Teams  </b>    '.$count.' Records.<br/>';
+                         $estatusreportinc .= "<table style = \"font-family:calibri;font-size:12px;line-height:14px;white-space:nowrap; border:1px solid;\">
+                                        <tr style=\"border-collapse:collapse;border:1px solid;padding-left:6px;background-color:lightblue;text-align:left;white-space:nowrap;\">
+                                            <th style=\"width:90px;text-align:left;white-space:nowrap;border:1px solid;\">Reported Date</th>
+                                            <th style=\"width:160px;text-align:left;white-space:nowrap;border:1px solid;\">Issue Number</th>
+                                            <th style=\"width:100px;text-align:left;white-space:nowrap;border:1px solid;\">GBP</th>
+                                            <th style=\"width:220px;text-align:left; white-space:nowrap;border:1px solid;\">Project</th>                                             
+                                            <th style=\"width:220px;text-align:left;white-space:nowrap;border:1px solid;\">Application</th> 
+                                            <th style=\"width:120px;text-align:left;white-space:nowrap;border:1px solid;\">Status</th>
+                                            <th style=\"white-space:nowrap;text-align:left;border:1px solid;\">Release Related</th>
+                                            <th style=\"width:235px;text-align:left;white-space:nowrap;border:1px solid;\">Summary</th>
+                                            <th style=\"width:235px;text-align:left;white-space:nowrap;border:1px solid;\">Recommendations</th>
+                                        </tr>";
+                         foreach ($query as $row) {
+                                   $estatusreportinc .= "<tr style=\"padding:5px;font-family:calibri;font-size:12px;line-height:14px; border:1px;\">
+                                                    <td style=\"border:1px solid;\">". $row->ReportedDate ."</td>
+                                                    <td style=\"width:160px;border:1px solid;\" >". $row->IssueNumber."</td>
+                                                    <td style=\"border:1px solid;\" >". $row->GBP."</td>
+                                                    <td style=\"width:180px;border:1px solid;word-break:break-word;\" >". $row->Project ."</td>
+                                                    <td style=\"word-break:break-all;border:1px solid;word-break:break-word;\" >". $row->Application ."</td>
+                                                    <td style=\"border:1px solid;\">". $row->Status."</td>
+                                                    <td style=\"border:1px solid;text-align:center;\">". $row->ReleaseRelated ."</td>  
+                                                    <td style=\"width:235px;border:1px solid;white-space:pre-line; \">".$row->Recommendations."</td> 
+                                                    <td style=\"width:235px;border:1px solid;white-space:pre-line; \">".$row->Summary."</td> 
+                                                  </tr>";                           
+                         }
+                         $estatusreportinc .= "</table>";      
+
+                         $query = $this->user_model->estatusreportpbi(); 
+                         $count = $query->num_rows();
+                         $query = $query->result();
+                         $estatusreportpbi .= "<table style = \"font-family:calibri;font-size:12px;white-space:nowrap; border:1px solid;\">
+                                        <tr style=\"border-collapse:collapse;border:1px solid;padding-left:6px;background-color:lightblue;text-align:left;white-space:nowrap;\">
+                                            <th style=\"width:90px;text-align:left;white-space:nowrap;border:1px solid;\">Reported Date</th>
+                                            <th style=\"width:160px;text-align:left;white-space:nowrap;border:1px solid;\">Issue Number</th>
+                                            <th style=\"width:100px;text-align:left;white-space:nowrap;border:1px solid;\">GBP</th>
+                                            <th style=\"width:220px;text-align:left; white-space:nowrap;border:1px solid;\">Project</th>                                             
+                                            <th style=\"width:220px;text-align:left;white-space:nowrap;border:1px solid;\">Application</th> 
+                                            <th style=\"width:120px;text-align:left;white-space:nowrap;border:1px solid;\">Status</th>
+                                            <th style=\"white-space:nowrap;text-align:left;border:1px solid;\">Release Related</th>
+                                            <th style=\"width:235px;text-align:left;white-space:nowrap;border:1px solid;\">Summary</th>
+                                            <th style=\"width:235px;text-align:left;white-space:nowrap;border:1px solid;\">Recommendations</th>
+                                        </tr>";
+                         foreach ($query as $row) {
+                                   $estatusreportpbi .= "<tr style=\"padding:5px;font-family:calibri;font-size:12px;line-height:14px; border:1px;\">
+                                                    <td style=\"border:1px solid;\">". $row->ReportedDate ."</td>
+                                                    <td style=\"width:160px;border:1px solid;\" >". $row->IssueNumber."</td>
+                                                    <td style=\"border:1px solid;\" >". $row->GBP."</td>
+                                                    <td style=\"width:180px;border:1px solid;word-break:break-word;\" >". $row->Project ."</td>
+                                                    <td style=\"word-break:break-all;border:1px solid;word-break:break-word;\" >". $row->Application ."</td>
+                                                    <td style=\"border:1px solid;\">". $row->Status."</td>
+                                                    <td style=\"border:1px solid;text-align:center;\">". $row->ReleaseRelated ."</td>  
+                                                    <td style=\"width:235px;border:1px solid;white-space:pre-line; \">".$row->Summary."</td>
+                                                    <td style=\"width:235px;border:1px solid;white-space:pre-line; \">".  $row->Recommendations."</td> 
+                                                  </tr>";                           
+                         }
+                         $estatusreportpbi .= "</table>";      
+
+
+
+
                     }
                     if($this->input->post('closed')){
 
@@ -423,7 +478,7 @@
                          $query = $query->result();
                          $closed .= "<table style = \"font-family:calibri; font-size:12px;line-height:14px;width:300%;white-space:nowrap; overflow:auto;border:1px solid\">
                                         <tr style=\"border-collapse:collapse;border:1px solid;padding-left:3px;background-color:lightblue;text-align:left;white-space:nowrap;\">
-                                            <th style=\"white-space:nowrap;border:1px solid;\">Issue Reported Date</th>
+                                            <th style=\"white-space:nowrap;border:1px solid;\">Reported Date</th>
                                             <th style=\"white-space:nowrap;border:1px solid;\">Issue Number</th>
                                             <th style=\"white-space:nowrap;border:1px solid;\">Application</th>    
                                             <th style=\"white-space:nowrap;border:1px solid;\">Priority</th>  

@@ -110,14 +110,15 @@
 						'id'   =>  	'casenumber',
 						'required' =>'required',
 						'size' =>	21,
-						'maxlength' =>17,
+						'maxlength' =>22,
 						'value'=> $case_no
 						);
 		$application = array(
 						'name' => 	'application',
 						'id'   =>  	'application',
+						'rows' => 3,
+						'cols' => 20,
 						'required' =>'required',
-						'size' =>	21,
 						'value'=> $application
 						);
 		$db = array(

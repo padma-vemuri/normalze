@@ -13,10 +13,10 @@ foreach ($othersCount as $row) {
 
 
 ?>
-<table  class="curvedEdges" style = "position:absolute; top:260px;">
+<table  class="curvedEdges" style = "position:absolute; top:260px;table-layout:fixed; "  >
   <tr style="background-color:lightblue;white-space:nowrap;text-align:left;">
     
-    <th>Date</th>
+    <th>Reported Date</th>
     <th>Issue Number</th>
     <th>Application</th>    
     <th>Priority</th>  
@@ -47,7 +47,7 @@ foreach($query as $row){
 
     //echo "<td> <a id='link' href=''>Edit</a></td>"
 
-    echo "<td >". $row->IssueReportedDate ."</td>";
+    echo "<td style='width:190px;'>". $row->IssueReportedDate ."</td>";
  	//echo "<td>". $row->CaseNo ."</td>";  
 
  	echo  "<td  >"."<a href='' style=\"color:blue;\" onclick =\"javascript: window.open('view/".$incnumber."', 'window_name', 'width = 250, height = 250,scrollbars=yes');\">Audit</a>".anchor('home/create/'.$incnumber, $row->CaseNo,array('id'=>'edit'))."</td>"; 
