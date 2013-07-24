@@ -22,6 +22,11 @@
                     'heading_cell_start'  => '<th style="border-collapse:collapse;background-color:lightblue;white-space:nowrap;">',
                     'heading_cell_end'    => '</th>',
 
+                    'heading_row_alt_start'   => '<tr>',
+                    'heading_row_alt_end'     => '</tr>',
+                    'heading_cell_alt_start'  => '<th style="border-collapse:collapse;background-color:blue;white-space:nowrap;">',
+                    'heading_cell_alt_end'    => '</th>',
+
                     'row_start'           => '<tr class="hover">',
                     'row_end'             => '</tr>',
                     'cell_start'          => '<td class="standard" style ="padding-left:17px;word-wrap:break-word;">',
@@ -416,7 +421,7 @@
                                             <th style=\"width:220px;text-align:left; white-space:nowrap;border:1px solid;\">Project</th>                                             
                                             <th style=\"width:220px;text-align:left;white-space:nowrap;border:1px solid;\">Application</th> 
                                             <th style=\"width:120px;text-align:left;white-space:nowrap;border:1px solid;\">Status</th>
-                                            <th style=\"white-space:nowrap;text-align:left;border:1px solid;\">Release Related</th>
+                                            <th style=\"white-space:nowrap;text-align:left;border:1px solid;padding-right:3px;\">Release Related</th>
                                             <th style=\"width:235px;text-align:left;white-space:nowrap;border:1px solid;\">Summary</th>
                                             <th style=\"width:235px;text-align:left;white-space:nowrap;border:1px solid;\">Recommendations</th>
                                         </tr>";
@@ -446,7 +451,7 @@
                                             <th style=\"width:220px;text-align:left; white-space:nowrap;border:1px solid;\">Project</th>                                             
                                             <th style=\"width:220px;text-align:left;white-space:nowrap;border:1px solid;\">Application</th> 
                                             <th style=\"width:120px;text-align:left;white-space:nowrap;border:1px solid;\">Status</th>
-                                            <th style=\"white-space:nowrap;text-align:left;border:1px solid;\">Release Related</th>
+                                            <th style=\"white-space:nowrap;text-align:left;border:1px solid;padding-right:3px;\">Release Related</th>
                                             <th style=\"width:235px;text-align:left;white-space:nowrap;border:1px solid;\">Summary</th>
                                             <th style=\"width:235px;text-align:left;white-space:nowrap;border:1px solid;\">Recommendations</th>
                                         </tr>";
@@ -476,7 +481,7 @@
                          $closed = '<b>Closed Issues </b> '.$countclosed.' Records <br/>';
                          
                          $query = $query->result();
-                         $closed .= "<table style = \"font-family:calibri; font-size:12px;line-height:14px;width:300%;white-space:nowrap; overflow:auto;border:1px solid\">
+                         $closed .= "<table style = \"font-family:calibri; font-size:12px;line-height:14px;width:200%;white-space:nowrap; overflow:auto;border:1px solid\">
                                         <tr style=\"border-collapse:collapse;border:1px solid;padding-left:5px;background-color:lightblue;text-align:left;white-space:nowrap;\">
                                             <th style=\"width:90px;white-space:nowrap;border:1px solid;\">Date</th>
                                             <th style=\"width:160px;white-space:nowrap;border:1px solid;\">Issue Number</th>
@@ -495,17 +500,17 @@
                                         </tr>";
                          foreach ($query as $row) {
                                    $closed .= "<tr style=\"border:1px;padding-left:5px;\">
-                                                    <td style=\"border:1px solid;\">". $row->IssueReportedDate ."</td>
+                                                    <td style=\"width:90px;border:1px solid;\">". $row->IssueReportedDate ."</td>
                                                     <td style=\"border:1px solid;\" >". $row->CaseNo."</td>
-                                                    <td style=\"border:1px solid;\" >". $row->Application ."</td>
-                                                    <pre><td style=\"border:1px solid; font-family:calibri;\" >". $row->Priority ."</td></pre>
-                                                    <td   style='border:1px solid;text-align:center;'>". $row->DBFE ."</td>
-                                                    <td style=\"border:1px solid;text-align:center;\" >". $row->Database ."</td>
-                                                    <td style='border:1px solid;text-align:center;'>". $row->SupportedDB ."</td>
+                                                    <td style=\"width:200px;border:1px solid;white-space:pre-line;\" >". $row->Application ."</td>
+                                                    <pre><td style=\"border:1px solid;width:200px; font-family:calibri;\" >". $row->Priority ."</td></pre>
+                                                    <td  style='border:1px solid;text-align:center;width:50px;'>". $row->DBFE ."</td>
+                                                    <td style=\"border:1px solid; width:100px; text-align:center;\">". $row->Database ."</td>
+                                                    <td style=\"border:1px solid; width:80px; text-align:center;\">". $row->SupportedDB ."</td>
                                                     <td style=\"border:1px solid;text-align:center;\">". $row->Analyst ."</td>
                                                     <td style=\"border:1px solid;text-align:center;\">". $row->Status."</td>
-                                                    <td style='border:1px solid;text-align:center;'>". $row->ReleaseRelated ."</td>  
-                                                    <td style=\"width:235px;border:1px solid;white-space:pre-line; \">".$row->Summary."</td>
+                                                    <td style=\"border:1px solid; width:80px; text-align:center;\">". $row->ReleaseRelated ."</td>  
+                                                    <td style=\" width:235px;border:1px solid;white-space:pre-line; \">".$row->Summary."</td>
                                                     <td style=\"width:235px;border:1px solid;white-space:pre-line; \">".  $row->Recommendations."</td> 
                                                     <td style='border:1px solid;text-align:center;'>". $row->CasePBI ."</td>
                                                   </tr>";                            

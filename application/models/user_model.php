@@ -38,54 +38,54 @@ class User_model extends CI_Model{
 
 	function casesummary(){
 		$query =$this->db->query("SELECT DISTINCT
-						       a.project as \"Project\",
-						       (  SELECT COUNT (1)
-						            FROM gdcp.release_status_report_v b
-						           WHERE     case_pbi = 'C'
-						                 AND release_related = 'Y'
-						                 AND SUBSTR (UPPER (status), 1, 3) NOT IN ('CLO', 'RES')
-						                 AND a.project = b.project
-						       			 GROUP BY project)
-						          as \"Open\",
-						       (  SELECT COUNT (1)
-						            FROM gdcp.release_status_report_v b
-						           WHERE     case_pbi = 'C'
-						                 AND release_related = 'Y'
-						                 AND SUBSTR (UPPER (status), 1, 3) IN ('CLO', 'RES')
-						                 AND a.project = b.project
-						        		 GROUP BY project)
-						          as \"Closed\",
-						       (  SELECT COUNT (1)
-						            FROM gdcp.release_status_report_v b
-						           WHERE     case_pbi = 'C'
-						                 AND release_related = 'Y'
-						                 AND a.project = b.project
-						        			GROUP BY project)
-						          as \"Total\"
-						  				FROM gdcp.release_status_report_v a
-										 WHERE case_pbi = 'C' AND release_related = 'Y'
-						UNION
-						SELECT 'Total' project,
-						       (SELECT COUNT (1)
-						          FROM gdcp.release_status_report_v b
-						         WHERE     case_pbi = 'C'
-						               AND release_related = 'Y'
-						               AND SUBSTR (UPPER (status), 1, 3) NOT IN ('CLO', 'RES'))
-						          open,
-						       (SELECT COUNT (1)
-						          FROM gdcp.release_status_report_v b
-						         WHERE     case_pbi = 'C'
-						               AND release_related = 'Y'
-						               AND SUBSTR (UPPER (status), 1, 3) IN ('CLO', 'RES'))
-						          Closed,
-						       (select COUNT(1) from gdcp.release_status_report_v b
-									where
-							case_pbi = 'C'
-						and release_related = 'Y') Total
-						from gdcp.release_status_report_v a
-						where case_pbi = 'C'
-						and release_related = 'Y'
-						and rownum = 1"
+                             '<div>' || a.project||'</div>' as \"Project\",
+                                 (  SELECT '<div>' ||COUNT (1)||'</div>'
+                                    FROM gdcp.release_status_report_v b
+                                   WHERE     case_pbi = 'C'
+                                         AND release_related = 'Y'
+                                         AND SUBSTR (UPPER (status), 1, 3) NOT IN ('CLO', 'RES')
+                                         AND a.project = b.project
+                                            GROUP BY project)
+                                  as \"Open\",
+                               (  SELECT '<div>' ||COUNT (1)||'</div>'
+                                    FROM gdcp.release_status_report_v b
+                                   WHERE     case_pbi = 'C'
+                                         AND release_related = 'Y'
+                                         AND SUBSTR (UPPER (status), 1, 3) IN ('CLO', 'RES')
+                                         AND a.project = b.project
+                                         GROUP BY project)
+                                  as \"Closed\",
+                               (  SELECT '<div style = \"font-weight:900;font-size:105%;color:black;\">' ||COUNT (1)||'</div>'
+                                    FROM gdcp.release_status_report_v b
+                                   WHERE     case_pbi = 'C'
+                                         AND release_related = 'Y'
+                                         AND a.project = b.project
+                                            GROUP BY project)
+                                  as \"Total\"
+                                          FROM gdcp.release_status_report_v a
+                                         WHERE case_pbi = 'C' AND release_related = 'Y'
+                        UNION
+                         SELECT '<p style =\"font-weight:900;font-size:105%;\"> Total </p>' as \"project\",
+                               (SELECT '<div style = \"font-weight:900;font-size:105%;color:black;\">' ||COUNT (1)||'</div>'
+                                  FROM gdcp.release_status_report_v b
+                                 WHERE     case_pbi = 'C'
+                                       AND release_related = 'Y'
+                                       AND SUBSTR (UPPER (status), 1, 3) NOT IN ('CLO', 'RES'))
+                                  open,
+                               (SELECT'<div style = \"font-weight:900;font-size:105%;color:black;\">' ||COUNT (1)||'</div>'
+                                  FROM gdcp.release_status_report_v b
+                                 WHERE     case_pbi = 'C'
+                                       AND release_related = 'Y'
+                                       AND SUBSTR (UPPER (status), 1, 3) IN ('CLO', 'RES'))
+                                  Closed,
+                               (select '<div style = \"font-weight:900;font-size:105%;color:black;\">' ||COUNT (1)||'</div>' from gdcp.release_status_report_v b
+                                    where
+                            case_pbi = 'C'
+                        and release_related = 'Y') Total
+                        from gdcp.release_status_report_v a
+                        where case_pbi = 'C'
+                        and release_related = 'Y'
+                        and rownum = 1"
 						);
 		if($query){
 			return $query;
@@ -263,14 +263,14 @@ class User_model extends CI_Model{
 		$query =$this->db->query("SELECT
 								ISSUE_REPORTED_DATE as \"IssueReportedDate\",
 								CASE_NO as \"CaseNo\",
-								APPLICATION as  \"Application\",
+								'<div align=\"left\"style=\"width:200px; word-break:keep-all;\">'||APPLICATION||'</div>' as \"Application\",
 								PRIORITY as \"Priority\",
 								DB_FE as \"DBFE\",
 								DB as \"Database\",
 								SUPPORTED_DB as \"SupportedDB\",
 								ANALYST as \"Analyst\",
 								STATUS as \"Status\",
-								RELEASE_RELATED as \"ReleaseRelated\",
+								'<div style=\"\">'||RELEASE_RELATED||'</div>' as \"ReleaseRelated\",
 								'<div style=\"width:300px; \"><pre style =\"font-family:calibri; font-size:12px;\">'||SUMMARY||'</pre></div>'  as \"Summary\",
 								'<div style=\"width:300px; \"><pre style =\"font-family:calibri; font-size:12px;\">'||RECOMMENDATIONS||'</pre></div>' as \"Recommendations\",
 								CASE_PBI as \"CasePBI\"
