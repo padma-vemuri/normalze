@@ -1,0 +1,177 @@
+PROCEDURE populate_defect_data IS
+/* This is a very rudimentary procedure - need more updates to avoid hard-coding */
+BEGIN
+LOCK TABLE cisco_11i_ermo_db_trend
+IN EXCLUSIVE MODE
+NOWAIT;
+DELETE cisco_11i_ermo_db;
+INSERT INTO cisco_11i_ermo_db (defect_id    ,
+d_type,
+domain,
+severity    ,
+release    ,
+status    ,
+assigned_to    ,
+project    ,
+GBP    ,
+track    ,
+summary    ,
+priority    ,
+logged_by    ,
+detected_date    ,
+type,
+environment,
+root_cause,
+modified_date
+)
+SELECT 
+BG_BUG_ID    ,
+BG_USER_02,
+'ERMOQA',
+BG_SEVERITY    ,
+BG_USER_01    ,
+BG_USER_100    ,
+BG_RESPONSIBLE    ,
+BG_user_43    ,
+BG_USER_07    ,
+NVL(bg_project, BG_USER_15),
+BG_SUMMARY    ,
+BG_PRIORITY    ,
+BG_DETECTED_BY    ,
+BG_DETECTION_DATE    ,
+NVL(BG_USER_02, BG_USER_44),
+bg_detection_version ,
+bg_user_10,
+to_char(to_date(bg_vts, 'YYYY-MM-DD HH24:MI:SS'), 'MM/DD/YYYY')
+FROM cisco_11i_ermoqa_db.bug@almprod
+WHERE bg_user_01 = 'ERMO Perf';
+INSERT INTO cisco_11i_ermo_db (defect_id    ,
+d_type,
+domain,
+severity    ,
+release    ,
+status    ,
+assigned_to    ,
+project    ,
+GBP    ,
+track    ,
+summary    ,
+priority    ,
+logged_by    ,
+detected_date    ,
+type,
+environment,
+root_cause,
+modified_date
+)
+SELECT 
+BG_BUG_ID    ,
+BG_USER_02,
+'ERMOQA',
+BG_SEVERITY    ,
+BG_USER_01    ,
+BG_USER_100    ,
+BG_RESPONSIBLE    ,
+BG_user_43    ,
+BG_USER_07    ,
+NVL(bg_project, BG_USER_15),
+BG_SUMMARY    ,
+BG_PRIORITY    ,
+BG_DETECTED_BY    ,
+BG_DETECTION_DATE    ,
+NVL(BG_USER_02, BG_USER_44),
+bg_detection_version ,
+bg_user_10,
+ to_char(to_date(bg_vts, 'YYYY-MM-DD HH24:MI:SS'), 'MM/DD/YYYY')
+FROM cisco_11i_ermoqa_db.bug@almprod
+WHERE bg_user_02 IN ( 'Performance', 'Performance - Bug','Oracle TAR')
+AND bg_user_01 IN ( 'Q4FY13', 'FY13-Q3') ;
+INSERT INTO cisco_11i_ermo_db (defect_id    ,
+d_type,
+domain,
+severity    ,
+release    ,
+status    ,
+assigned_to    ,
+project    ,
+GBP    ,
+track    ,
+summary    ,
+priority    ,
+logged_by    ,
+detected_date    ,
+type,
+environment,
+root_cause,
+modified_date
+)
+SELECT 
+BG_BUG_ID    ,
+BG_USER_02,
+'ERMORQ',
+BG_SEVERITY    ,
+BG_USER_01    ,
+BG_USER_100    ,
+BG_RESPONSIBLE    ,
+BG_user_43    ,
+BG_USER_07    ,
+NVL(bg_project, BG_USER_15),
+BG_SUMMARY    ,
+BG_PRIORITY    ,
+BG_DETECTED_BY    ,
+BG_DETECTION_DATE    ,
+NVL(BG_USER_02, BG_USER_44),
+bg_detection_version ,
+bg_user_10,
+ to_char(to_date(bg_vts, 'YYYY-MM-DD HH24:MI:SS'), 'MM/DD/YYYY')
+FROM cisco_11i_ermorq_db.bug@almprod
+WHERE bg_user_01 = 'ERMO Perf';
+INSERT INTO cisco_11i_ermo_db (defect_id    ,
+d_type,
+domain,
+severity    ,
+release    ,
+status    ,
+assigned_to    ,
+project    ,
+GBP    ,
+track    ,
+summary    ,
+priority    ,
+logged_by    ,
+detected_date    ,
+type,
+environment,
+root_cause,
+modified_date
+)
+SELECT 
+BG_BUG_ID    ,
+BG_USER_02,
+'ERMORQ',
+BG_SEVERITY    ,
+BG_USER_01    ,
+NVL(BG_USER_100    , bg_user_06),
+BG_RESPONSIBLE    ,
+BG_user_43    ,
+BG_USER_07    ,
+NVL(bg_project, BG_USER_15),
+BG_SUMMARY    ,
+BG_PRIORITY    ,
+BG_DETECTED_BY    ,
+BG_DETECTION_DATE    ,
+NVL(BG_USER_02, BG_USER_44),
+bg_detection_version ,
+bg_user_10,
+to_char(to_date(bg_vts, 'YYYY-MM-DD HH24:MI:SS'), 'MM/DD/YYYY')
+FROM cisco_11i_ermorq_db.bug@almprod
+WHERE bg_user_02 IN ( 'Performance', 'Performance - Bug','Oracle TAR')
+AND bg_user_01 IN ( 'Q4FY13', 'Q1FY14', 'Q2FY14', 'Q3FY14', 'Q4FY14','FY13-Q3');
+COMMIT;
+EXCEPTION
+WHEN OTHERS THEN
+  ROLLBACK;
+  RAISE;
+END populate_defect_data;
+end perf_bug_pkg;
+/

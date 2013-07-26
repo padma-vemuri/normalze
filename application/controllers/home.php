@@ -329,9 +329,18 @@
 		function charts(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
+
+               $this->load->model('chart_model');
+               $data['incidentSummary'] = $this->chart_model->incidentSummary();
+               $data['incidentLoggedByProjects'] = $this->chart_model->incidentLoggedByProjects();
+               $data['incidentLoggedByDate'] = $this->chart_model->incidentLoggedByDate();
+               $data['incidentOpenByProject'] = $this->chart_model->incidentOpenByProject();
+               $data['closedCasesByProject'] = $this->chart_model->closedCasesByProject();
+
+
 			$this->load->view('header');
 			$this->load->view('menu');
-			$this->load->view('charts');	
+			$this->load->view('charts',$data);	
 		}
 		function email(){
 

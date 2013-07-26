@@ -1,0 +1,1 @@
+<img src="http://localhost/test/normalize/index.php/graph"/ >  
