@@ -139,7 +139,7 @@
                $data['query'] = $this->user_model->update();
                $data['openCount'] = $this->user_model->openCount();
                $data['closedCount'] = $this->user_model->closedCount();
-               $data['othersCount'] = $this->user_model->othersCount();
+               //$data['othersCount'] = $this->user_model->othersCount();
                $this->load->library('table');
                $this->load->view('update',$data);
           }

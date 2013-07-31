@@ -171,13 +171,13 @@ class User_model extends CI_Model{
 		}else
 		return false;
 	}
-	function othersCount(){
+	/*function othersCount(){
 		$query =$this->db->query(" select count(Case_no) as \"OTHERS\" from gdcp.release_status_report_V where Status <> 'Closed' and status <> 'Open'");
 		if($query){
 			return $query->result();
 		}else
 		return false;
-	}
+	}*/
 
 
 
