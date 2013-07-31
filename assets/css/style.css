@@ -65,9 +65,10 @@ fieldset {position:absolute;left:500px; top : 150px;border-radius: 10px;  font: 
 li.passwordReset {text-align: left; margin-left: 10px;}
 div#menu{ position:absolute;top:00px;right:10px; }
 
-div#casesummary{position:absolute; top:10px}
-div#cases24{position:absolute; top:10px;left:0px;word-wrap:break-word;}
-div#open24{position:relative; top:100px;}
+div#leftpane{position: absolute; top: 150px;}
+div#casesummary{float: left;}
+div#cases24{position:absolute; top:10px;}
+div#open24{ float: left;clear: both;}
 
 div#footer{position: relative;margin-top: -100px;height: 150px;clear:both;}
 div#list{position:absolute; top:150px;}

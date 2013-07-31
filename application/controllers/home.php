@@ -49,12 +49,12 @@
 
                     'row_start'           => '<tr class="hover">',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td class="standard" style ="word-break:break-word;">',
+                    'cell_start'          => '<td class="standard" style ="word-break:break-word;word-wrap:break-word;">',
                     'cell_end'            => '</td>',
 
                     'row_alt_start'       => '<tr class="hover">',
                     'row_alt_end'         => '</tr>',
-                    'cell_alt_start'      => '<td class="standard" style ="word-break: break-word;">',
+                    'cell_alt_start'      => '<td class="standard" style ="word-break: break-word;word-wrap:break-word;">',
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
@@ -69,17 +69,17 @@
 
                     'row_start'           => '<tr class = "hover"  >',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td class="standard" style ="word-break:break-word;" >',
+                    'cell_start'          => '<td class="standard" style ="word-break:break-word;word-wrap:break-word;" >',
                     'cell_end'            => '</td>',
 
                     'row_alt_start'       => '<tr class = "hover" >',
                     'row_alt_end'         => '</tr>',
-                    'cell_alt_start'      => '<td class="standard" style ="word-break:break-word;">',
+                    'cell_alt_start'      => '<td class="standard" style ="word-break:break-word; word-wrap:break-word;">',
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
                );
-               echo "<div style=\"width:45%;\" id  =\"casesummarytitle\">";
+               echo"<div id ='leftpane'>";
 			$this->table->set_template($tmpl);
                $this->table->set_empty("0");
                $this->table->set_caption('Q1FY14-Issues Summary');
@@ -87,18 +87,18 @@
 			  echo $this->table->generate($query);
                else
                     echo "NO Projects";
-               echo "</div>";
+               echo " <br/><br/>";
 			$query = $this->user_model->open24();
                
                if($query->num_rows() > 0){
-                    echo "<div style=\"width:auto;\" id = \"open24title\">";
+                    echo "<div style=\"width:auto;\" id = \"open24title\"></div>";
                     $this->table->set_template($tmp2);
                     $this->table->set_empty("Not Defined");
                     $this->table->set_caption('Q1FY14-Issues open in the last 24 hours');
                     echo $this->table->generate($query);
                }
                else{
-                    echo "<div style=\"width:300px;\" id = \"open24titleE\">";
+                    
                     //$this->table->set_template($tmp2);
                     //$this->table->set_caption('Cases open in the last 24 hours');
                     //echo $this->table->generate($query); 
