@@ -13,6 +13,7 @@ $list = array(
 		 'ISSUE_REPORTED_DATE' =>'Reported Date',
 		 'APPLICATION' =>'Application',
 		 'DB_FE' =>	'DB/FE',
+		 'Project' =>'Project',
 		 'DB'	=>'Database',
 		 'PRIORITY'=>'Priority',
 		 'SUPPORTED_DB' =>'Supported DB',

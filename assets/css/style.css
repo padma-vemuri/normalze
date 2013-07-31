@@ -150,7 +150,7 @@ p.countIssues{
 .charts{position: absolute; top: 150px;}
 #incidentSummary{width: 400px; height: 100px;margin:10px 10px 10px 20px;}
 #incidentLoggedByDate{width: 400px; height: 300px;margin:10px 10px 10px 20px;}
-#incidentOpenByProject{width: 600px; height: 300px;margin:10px 10px 10px 20px;}
+#incidentOpenByProject{width: 500px; height: 300px;margin:10px 10px 10px 20px;}
 #incidentLoggedByProjects{width: 600px; height: 300px;margin:10px 10px 10px 20px;}
 #closedCasesByProject{width: 600px; height: 300px;margin:10px 10px 10px 20px;}
 

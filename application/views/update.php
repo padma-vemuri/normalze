@@ -18,6 +18,7 @@ foreach ($othersCount as $row) {
     
     <th>Date</th>
     <th>Issue Number</th>
+    <th>Project </th>
     <th>Application</th>    
     <th>Priority</th>  
     <th>DB/FE</th>
@@ -25,9 +26,9 @@ foreach ($othersCount as $row) {
     <th>Supported DB </th>
     <th>Analyst</th>
     <th>Status</th>
-    <th>Release Related</th>
-    <th>Recommendations</th>
+    <th>Release Related</th>    
     <th>Summary</th>
+    <th>Recommendations</th>
     <th>Case/PBI</th>    
       
   </tr>
@@ -51,6 +52,7 @@ foreach($query as $row){
  	//echo "<td>". $row->CaseNo ."</td>";  
 
  	echo  "<td  >"."<a href='' style=\"color:blue;\" onclick =\"javascript: window.open('view/".$incnumber."', 'window_name', 'width = 250, height = 250,scrollbars=yes');\">Audit</a>".anchor('home/create/'.$incnumber, $row->CaseNo,array('id'=>'edit'))."</td>"; 
+   echo "<td style='word-wrap:break-word;'>". $row->Project ."</td>";
   echo "<td style='word-wrap:break-word;'>". $row->Application ."</td>";
  	echo "<td style='word-wrap:break-word;' >". $row->Priority ."</td>";
  	echo "<td   style='text-align:center;'>". $row->DBFE ."</td>";

@@ -118,6 +118,7 @@
 						'id'   =>  	'application',
 						'rows' => 3,
 						'cols' => 20,
+						'maxlength' => 200,
 						'required' =>'required',
 						'value'=> $application
 						);

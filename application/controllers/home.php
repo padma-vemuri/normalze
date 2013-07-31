@@ -482,6 +482,7 @@
 
 
 
+
                     }
                     if($this->input->post('closed')){
 
@@ -542,7 +543,7 @@
           			$this->email->set_newline("\r\n");
           			$this->email->from($username.'@cisco.com', '');
           			$this->email->to($username.'@cisco.com', ''); 
-          			$this->email->subject('Status Report for Normalization');
+          			$this->email->subject('ATS Performance Normalization Report');
                          //$body = array('$perfapp','$statusreport','$closed');
                           if(!$this->input->post('casesummary')){
                               $casesummary = '';
