@@ -1,7 +1,7 @@
 <div name ="body" id ="search" class ="body">
 <?php
 error_reporting(0);
-echo "<br/>";
+/*echo "<br/>";
 $formHTML = array(
 					'id' => 'search');
 echo form_open('home/create',$formHTML);
@@ -17,5 +17,5 @@ $inputUsername = array(
 				);
 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 echo form_close();
-?>
+?>*/?>	
 </div>

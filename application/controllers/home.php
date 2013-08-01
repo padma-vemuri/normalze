@@ -29,12 +29,12 @@
 
                     'row_start'           => '<tr class="hover">',
                     'row_end'             => '</tr>',
-                    'cell_start'          => '<td class="standard" style ="padding-left:17px;word-wrap:break-word;">',
+                    'cell_start'          => '<td class="standard" style ="padding-left:17px;word-break:break-word;word-wrap:break-word;">',
                     'cell_end'            => '</td>',
 
                     'row_alt_start'       => '<tr class="hover">',
                     'row_alt_end'         => '</tr>',
-                    'cell_alt_start'      => '<td class="standard" style ="padding-left:17px;word-wrap:break-word;">',
+                    'cell_alt_start'      => '<td class="standard" style ="padding-left:17px;word-break:break-word;word-wrap:break-word;">',
                     'cell_alt_end'        => '</td>',
 
                     'table_close'         => '</table></div>'
@@ -398,7 +398,7 @@
                
                     if($this->input->post('casesummary')){
 
-                         $query = $this->user_model->casesummary();
+                         $query = $this->user_model->ecasesummary();
                          $casesummary = '<b>Issue Summary </b> <br/>';
                          $this->table->set_template($tmp1);
                          $this->table->set_empty("0");
@@ -452,6 +452,7 @@
                          $query = $this->user_model->estatusreportpbi(); 
                          $count = $query->num_rows();
                          $query = $query->result();
+                         $estatusreportpbi = '<b style=\"font-family:calibri;\">Issues Reported by  Performance Team  </b>    '.$count.' Records.<br/>';
                          $estatusreportpbi .= "<table style = \"font-family:calibri;font-size:12px;white-space:nowrap; border:1px solid;\">
                                         <tr style=\"border-collapse:collapse;border:1px solid;padding-left:6px;background-color:lightblue;text-align:left;white-space:nowrap;\">
                                             <th style=\"width:90px;text-align:left;white-space:nowrap;border:1px solid;\">Date</th>
@@ -530,7 +531,7 @@
                     }
                     if($this->input->post('projectslist')){
                         
-                         $query = $this->user_model->projectlist(); 
+                         $query = $this->user_model->eprojectlist(); 
                          //$countprojects = $query->num_rows(); 
                          
                          $this->table->set_template($tmp1);
@@ -603,6 +604,8 @@
                //$this->load->view('search');
                $this->load->model('user_model');
                $query =  $this->user_model->search();
+               $data['openCount'] = $this->user_model->Countopen();
+               $data['closedCount'] = $this->user_model->Countclosed();
                $this->load->library('table');
                $tmpl = array (
                     'table_open'          => '<div id="issues" style ="z-index:1; position:relative; top:200px;"><table style = "" class="curvedEdges">',
@@ -629,6 +632,8 @@
                $data['query'] = $query;
                if($query != false){
                      $this->load->view('update',$data);
+
+
                    // $this->load->view('search');
                    // echo $this->table->generate($query);
                     echo"<input type='button' id=\"button1\" value=\"Back\" onClick=\"window.history.back();\" /></div>";

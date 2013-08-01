@@ -14,7 +14,8 @@ foreach ($closedCount as $row) {
     
     <th>Date</th>
     <th>Issue Number</th>
-    <th>Project </th>
+    <th>GBP</th>
+    <th>Project Name </th>
     <th>Application</th>    
     <th>Priority</th>  
     <th>DB/FE</th>
@@ -48,7 +49,8 @@ foreach($query as $row){
  	//echo "<td>". $row->CaseNo ."</td>";  
 
  	echo  "<td  >"."<a href='' style=\"color:blue;\" onclick =\"javascript: window.open('view/".$incnumber."', 'window_name', 'width = 250, height = 250,scrollbars=yes');\">Audit</a>".anchor('home/create/'.$incnumber, $row->CaseNo,array('id'=>'edit'))."</td>"; 
-   echo "<td style='word-wrap:break-word;'>". $row->Project ."</td>";
+  echo "<td style='word-wrap:break-word;'>". $row->GBP ."</td>";
+  echo "<td style='word-wrap:break-word;'>". $row->Project ."</td>";
   echo "<td style='word-wrap:break-word;'>". $row->Application ."</td>";
  	echo "<td style='word-wrap:break-word;' >". $row->Priority ."</td>";
  	echo "<td   style='text-align:center;'>". $row->DBFE ."</td>";

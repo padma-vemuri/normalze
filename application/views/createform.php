@@ -1,6 +1,6 @@
 	<div id="errordiv">
 		<?php
-		error_reporting(0);
+		
 		echo $this->session->userdata['errorlog'];
     	$this->session->unset_userdata('errorlog'); 
     	?>
