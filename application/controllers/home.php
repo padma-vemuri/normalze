@@ -137,8 +137,11 @@
                $this->session->unset_userdata('errorlog');
                $this->load->model('user_model');
                $data['query'] = $this->user_model->update();
-               $data['openCount'] = $this->user_model->openCount();
-               $data['closedCount'] = $this->user_model->closedCount();
+               $data['openCount'] = $this->user_model->openCountR();
+               $data['closedCount'] = $this->user_model->closedCountR();
+               $data['openCountNotRelated'] = $this->user_model->openCountNR();
+               $data['closedCountNotRelated'] = $this->user_model->closedCountNR();
+               
                //$data['othersCount'] = $this->user_model->othersCount();
                $this->load->library('table');
                $this->load->view('update',$data);
@@ -216,6 +219,7 @@
 			$this->load->view('header');
 			$this->load->view('menu');
                $this->load->view('search');
+
 			//$this->load->view('email');
                echo $this->session->userdata('sucesslog');
                $this->session->unset_userdata('sucesslog');
@@ -242,26 +246,35 @@
 
                     'table_close'         => '</table></div>'
                 );
-               $this->table->set_caption('<h2 class="tableheading">Issues Reported by GBP/Application Support Team</h2><p class ="count">'.$query->num_rows().' Records</p>');
+               $this->table->set_caption('<h2 class="tableheading">Issues Reported by GBP/Application Support Team</h2>');//<p class ="count">'.$query->num_rows().' Records</p>');
 			$this->table->set_template($tmpl);
 			$statusreport = $this->table->generate($query);
 			echo $statusreport;
 
                $query = $this->user_model->perfapp();
 
-               $this->load->library('table');
-              
+              $this->load->library('table');
+               $data['countOpenPBIY']= $this->user_model->countPBI('Y','Open');
+               $data['countOpenINCY']= $this->user_model->countINC('Y','Open');
+               $data['countOpenPBIN']= $this->user_model->countPBI('N','Open');
+               $data['countOpenINCN']= $this->user_model->countINC('N','Open');
+               $data['countClosedPBIY']= $this->user_model->countPBI('Y','Closed');
+               $data['countClosedINCY']= $this->user_model->countINC('Y','Closed');
+               $data['countClosedPBIN']= $this->user_model->countPBI('N','Closed');
+               $data['countClosedINCN']= $this->user_model->countINC('N','Closed');
                $this->table->set_caption('<br/><br/><h2 class="tableheading">Issues Reported by Application and Performance Support team (Extended Version)</h2><p class ="count">'.$query->num_rows().' Records');
                $this->table->set_template($tmpl);
                $perfapp = $this->table->generate($query);
                echo $perfapp;
 			$query = $this->user_model->closed();
 			
-               $this->table->set_caption('<br/><br/><h2 class="tableheading">Closed Issues</h2><p class ="count">'.$query->num_rows().' Records');
+               $this->table->set_caption('<br/><br/><h2 class="tableheading">Closed Issues</h2>');//<p class ="count">'.$query->num_rows().' Records');
 			$this->table->set_template($tmpl);
 			$closed = $this->table->generate($query);
 			echo $closed;
 			echo "<br/>";
+               $this->load->view('tablesummary',$data);
+
 		}
 		function releaseprojects(){
 			$this->load->view('header');
@@ -410,12 +423,6 @@
                     }
                     if($this->input->post('statusreport')){
      
-                        /* $query = $this->user_model->perfapp();
-                         $this->table->set_template($tmp2);
-                         $perfapp = '<b>Issues Reported by Application/Performance Team(Extended Version)  </b>'.$query->num_rows().' Records.<br/>';
-                         $perfapp .= $this->table->generate($query);
-                         //$perfapp .='<br/>'.$query->num_rows().'Records.'; */
-                    
 
                          $query = $this->user_model->estatusreportinc(); 
                          $count = $query->num_rows();
@@ -604,8 +611,10 @@
                //$this->load->view('search');
                $this->load->model('user_model');
                $query =  $this->user_model->search();
-               $data['openCount'] = $this->user_model->Countopen();
-               $data['closedCount'] = $this->user_model->Countclosed();
+               $data['openCount'] = $this->user_model->CountopenRelated();
+               $data['closedCount'] = $this->user_model->CountclosedRelated();
+               $data['openCountNotRelated'] = $this->user_model->CountopenNotRelated();
+               $data['closedCountNotRelated'] = $this->user_model->CountclosedNotRelated();
                $this->load->library('table');
                $tmpl = array (
                     'table_open'          => '<div id="issues" style ="z-index:1; position:relative; top:200px;"><table style = "" class="curvedEdges">',
@@ -704,6 +713,67 @@
                }
                return $pageURL;
           }
+
+          function support(){
+               if(!isset($this->session->userdata['username']))
+                    redirect('login');
+               echo $this->session->userdata('sucesslog');
+               echo $this->session->userdata('errorlog');
+               $this->session->unset_userdata('sucesslog');
+               $this->session->unset_userdata('errorlog');
+
+               $this->load->view('header');
+               $this->load->view('menu');
+               //$this->load->view('search');
+               $this->load->view('support');
+
+          }
+
+          function emailsupport(){
+
+                if(!isset($this->session->userdata['username']))
+                    redirect('login');
+               $this->load->library('email');
+               $username =  $this->input->post('username');
+               $problemo =  $this->input->post('problem');
+
+                         $this->email->set_newline("\r\n");
+                         $this->email->from($username.'@cisco.com', '');
+                         $this->email->to('venvemur@cisco.com'); 
+                         $this->email->subject('ATS Performance Support');
+                         //$body = array('$perfapp','$statusreport','$closed');
+
+                         $this->email->message('<html> 
+                                                  <body>
+                                                       Hi,<br/><br/>
+                                                       '.$username.' says your application is buggy. <br/>
+                                                       Or <br/>
+                                                       He might need help using your application.<br/>
+
+                                                       Liten to him...
+
+                                                       '.$username.' says,<br/>
+                                                       <h2>
+                                                       '.$problemo.'<br/> <br/></h2>
+                                                       <br/><br/>
+
+
+                                                       You need to Get back to '.$username.'. Soon.
+                                                       
+                                                   </body>
+                                                 </html>
+
+                                                  ');
+               
+               if ($this->email->send()){
+                    $this->session->set_userdata('sucesslog','<p class="sucesslog">Your Email has been sent!</p>');
+                    redirect('home');
+               }
+               else
+                    echo $this->email->print_debugger();
+          }
+
+
      }
      class CurrentPage {
          public  function curPageURL() {

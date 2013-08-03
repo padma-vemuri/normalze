@@ -1,12 +1,23 @@
 <?php
 error_reporting(0);
 
+echo "<table class ='countIssues'> <tr><th id= 'theader' colspan = '4'> Release Related </th></tr>";
+echo " <tr><th  id= 'theader2Y' colspan = '2'>Yes</th><th  id= 'theader2N' colspan = '2'>No</th> </tr>";
+echo "<tr><td class ='tdataY'>";
 foreach ($openCount as $row) {
-  echo "<p class = 'countIssues'><b>Open :</b> ".$row->OPEN.' | ' ;
+  echo "Open: ".$row->OPEN.'' ;
 }
+echo "</td>";
+echo "<td class ='tdataY'>";
 foreach ($closedCount as $row) {
-  echo " <b>Closed :</b> ".$row->CLOSED.' </p> ' ;
+  echo "Closed: ".$row->CLOSED.'' ;
 }
+foreach ($openCountNotRelated as $row)
+  echo "<td class ='tdataN'>Open: ".$row->OPEN."</td>";
+foreach ($closedCountNotRelated as $row)
+  echo "<td class ='tdataN'>Closed: ".$row->CLOSED."</td>";
+
+echo "</tr> </table>"
 
 ?>
 <table  class="curvedEdges" style = "position:absolute; top:260px;table-layout:fixed; "  >
@@ -38,7 +49,7 @@ foreach($query as $row){
     $search = preg_replace('/\(|\)/','',$row->CaseNo);
     $search = preg_replace('/\ |\ /','',$search);
      
-     $pattern = '/Paged/';
+     $pattern = '/PAGED/';
      $replacement = '';
    $incnumber = preg_replace($pattern,$replacement ,$search); 
   echo "<tr class =\"hover\" style=\"border:0px;\">";

@@ -48,5 +48,6 @@
 </div>
 
 <div class="logout">
-	<input type='button' id="button" value="Logout" onClick="javascript:location.href = '/test/normalize/index.php/home/logout';" />
+	<input type='button' id="button" value="Logout" onClick="javascript:location.href = '/test/normalize/index.php/home/logout';" /><br/>
+	<a class= "menu" 	href= "<?php base_url()?>/test/normalize/index.php/home/support">Report a bug? </a>
 </div>
