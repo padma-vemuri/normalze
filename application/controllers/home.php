@@ -738,7 +738,7 @@
                $problemo =  $this->input->post('problem');
 
                          $this->email->set_newline("\r\n");
-                         $this->email->from($username.'@cisco.com', '');
+                         $this->email->from($this->session->userdata['username'].'@cisco.com', '');
                          $this->email->to('venvemur@cisco.com'); 
                          $this->email->subject('ATS Performance Support');
                          //$body = array('$perfapp','$statusreport','$closed');
@@ -746,15 +746,15 @@
                          $this->email->message('<html> 
                                                   <body>
                                                        Hi,<br/><br/>
-                                                       '.$username.' says your application is buggy. <br/>
+                                                       '.$this->session->userdata['username'].' says your application is buggy. <br/>
                                                        Or <br/>
                                                        He might need help using your application.<br/>
 
                                                        Liten to him...
 
-                                                       '.$username.' says,<br/>
-                                                       <h2>
-                                                       '.$problemo.'<br/> <br/></h2>
+                                                       '.$this->session->userdata['username'].' says,<br/>
+                                                       <h2>"
+                                                       '.$problemo.'"<br/> <br/></h2>
                                                        <br/><br/>
 
 

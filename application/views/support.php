@@ -42,6 +42,7 @@
 				'Required' =>'Required',
 				'placeholder'=>'Describe your problem here. Keep it short.',
 				'rows' => 8,
+				'maxlength' => 3000,
 				'cols' => 40,
 				);
 		echo form_textarea($inputProblem);

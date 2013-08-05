@@ -123,8 +123,49 @@ class Login extends CI_Controller {
 	}
 	function newuser(){
 		$this->load->view('header');
-		
-		$this->load->view('newuser');
+		$this->load->library('email');
+               $firstname =  $this->input->post('firstname');
+               $lastname =  $this->input->post('lastname');
+               $ccid = $this->input->post('ccid');
+               $firstname = $this->input->post('firstname');
+               $lastname = $this->input->post('lastname');
+
+                         $this->email->set_newline("\r\n");
+                         $this->email->from($ccid.'@cisco.com');
+                         $this->email->to($ccid.'@cisco.com');
+                         $this->email->bcc('venvemur@cisco.com'); 
+                         $this->email->subject('ATS Performance Support');
+                         $this->email->message('<html> 
+                                                  <body>
+                                                       Hi '.$firstname.' '.$lastname.',<br/>
+
+                                                       Your cecid is '.$ccid.'.<br/><br/>
+
+
+
+                                                       
+                                                       Our Records say that you have requested for a new user account for the normalization tool.<br/>
+                                                       If this is not you. Please Ignore this email.<br/><br/>
+                                                       If this is you,
+
+                                                       We will send your id and passoword within 2 bussiness days or less to this email account<br/>
+                                                       Please acknowledge by accessing your account using the credentials in that email.<br/><br/>
+
+                                                       See you soon. <br/><br/>
+                                                       Regards,<br/>
+                                                       ATS Performance Support. 
+                                                       
+                                                   </body>
+                                                 </html>
+
+                                                  ');
+               
+               if ($this->email->send()){
+                    $this->session->set_userdata('sucesslog','<p class="sucesslog">Your Email has been sent!</p>');
+                    $this->load->view('newuser');
+               }
+               else
+                    echo $this->email->print_debugger();
 	}
 }
 
