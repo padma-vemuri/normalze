@@ -320,7 +320,7 @@
 					else
 						 return false;;\" />";
 		echo form_submit($inputSubmit); 
-		echo "<h1 class= 'logo' style='position:absolute;right:5px; bottom:-23px;'><img src=\"/test/normalize/assets/images/ciscologo32.jpg\"/> </h1>";
+		echo "<h1 class= 'logo' style='position:absolute;right:5px; bottom:-23px;'><img src=".base_url()."assets/images/ciscologo32.jpg\"/> </h1>";
 		echo form_close();
 ?>
 </div> 

@@ -52,7 +52,7 @@
 		 
 		
 		echo "<br/>";
-	    echo "<h1 class= 'logo' style='position:absolute;right:10px; bottom:-20px;'><img src=\"/test/normalize/assets/images/ciscologo.jpg\"/> </h1>";
+	    echo "<h1 class= 'logo' style='position:absolute;right:10px; bottom:-20px;'><img src=".base_url()."assets/images/ciscologo.jpg\"/> </h1>";
 		echo form_close();
 
 	?>

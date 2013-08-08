@@ -6,6 +6,10 @@
 	     function index(){
                if(!isset($this->session->userdata['username']))
                     redirect('login');
+               echo $this->session->userdata('sucesslog');
+               echo $this->session->userdata('errorlog');
+               $this->session->unset_userdata('sucesslog');
+               $this->session->unset_userdata('errorlog');
 
                $this->load->view('header');
 			$this->load->view('menu');
